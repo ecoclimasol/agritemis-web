@@ -34,6 +34,9 @@ const IndicatorCard: React.FC<IndicatorCardProps> = ({
 
             {/* Contenu */}
             <div className="p-6 flex flex-col flex-grow">
+                {/* Affichage de l'ID pour référence */}
+                <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 text-center mb-1">{id}</span> 
+
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {title}
                 </h3>
