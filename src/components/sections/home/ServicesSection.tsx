@@ -19,7 +19,6 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
@@ -54,18 +53,20 @@ export default function ServicesSection() {
           {services.map(({ icon: Icon, key }, index) => (
             <ScrollReveal key={key} delay={index * 0.1}>
               <Card variant="feature" className="h-full">
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 pb-2">
                   <div className="p-3 rounded-xl bg-agri-green-50 w-fit">
                     <Icon className="h-6 w-6 text-agri-green-600" />
                   </div>
                   <CardTitle>{t(`service_${key}_title`)}</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="leading-relaxed">
                     {t(`service_${key}_desc`)}
                   </CardDescription>
                 </CardContent>
-                <CardFooter className="gap-2">
-                  <Badge variant="blue">{t("target_users_label")}</Badge>
-                  <span className="text-sm text-agri-blue-500">
+                <CardFooter className="flex-col items-start gap-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                    {t("target_users_label")}
+                  </span>
+                  <span className="text-sm text-agri-blue-600 leading-snug">
                     {t(`service_${key}_targets`)}
                   </span>
                 </CardFooter>

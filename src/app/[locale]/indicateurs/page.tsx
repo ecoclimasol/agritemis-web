@@ -17,40 +17,67 @@ export async function generateMetadata(): Promise<Metadata> {
 const indicators = [
   {
     acronym: "ARI",
-    name: "Applicator Risk Indicator",
+    name: "Indice de Risque de Toxicité Aiguë",
     color: "bg-agri-green-600",
     description:
-      "Mesure le risque d'exposition aux pesticides pour les applicateurs lors des traitements agricoles.",
+      "Évalue le risque immédiat que présente un pesticide pour les applicateurs, les travailleurs et les riverains, en fonction de sa toxicité et de l'exposition à court terme.",
   },
   {
     acronym: "CRI",
-    name: "Consumer Risk Indicator",
+    name: "Indice de Risque de Toxicité Chronique",
     color: "bg-agri-blue-600",
     description:
-      "Évalue le risque résiduel pour les consommateurs à travers l'analyse des résidus dans les produits récoltés.",
+      "Mesure le risque à long terme pour les travailleurs et les riverains, incluant les effets cancérogènes, endocriniens, neurologiques et systémiques liés à une exposition répétée.",
   },
   {
     acronym: "CORI",
-    name: "Community Risk Indicator",
+    name: "Indice de Risque pour les Consommateurs",
     color: "bg-amber-600",
     description:
-      "Quantifie le risque pour les riverains et les communautés à proximité des zones de traitement.",
+      "Quantifie le risque que représente un pesticide (et ses métabolites) pour la population via la consommation de denrées agricoles et d'eau potable.",
   },
   {
     acronym: "BRI",
-    name: "Biodiversity Risk Indicator",
+    name: "Indice de Risque pour la Biodiversité",
     color: "bg-emerald-600",
     description:
-      "Évalue l'impact des pesticides sur la biodiversité locale, incluant les pollinisateurs et les organismes aquatiques.",
+      "Évalue l'impact d'un pesticide sur les abeilles, oiseaux, vers de terre, organismes aquatiques et écosystèmes, à court et long terme.",
   },
   {
     acronym: "WARI",
-    name: "Water Risk Indicator",
+    name: "Indice de Risque pour l'Eau",
     color: "bg-sky-600",
     description:
-      "Mesure le risque de contamination des eaux souterraines et de surface par les substances actives.",
+      "Synthétise le risque de contamination des nappes et des eaux de surface, ainsi que les effets potentiels sur les consommateurs et la faune aquatique.",
   },
 ];
+
+function IndicatorItem({ indicator }: { indicator: typeof indicators[number] }) {
+  return (
+    <Card variant="indicator" className="h-full">
+      <CardContent className="pt-6 space-y-4">
+        <div className="flex items-center gap-3">
+          <div
+            className={`w-10 h-10 rounded-full ${indicator.color} text-white flex items-center justify-center font-bold text-sm shrink-0`}
+          >
+            {indicator.acronym.charAt(0)}
+          </div>
+          <div>
+            <CardTitle>{indicator.acronym}</CardTitle>
+            <p className="text-xs text-text-muted">{indicator.name}</p>
+          </div>
+        </div>
+        <CardDescription className="leading-relaxed">{indicator.description}</CardDescription>
+        <Link
+          href="/indicator-request"
+          className="inline-block text-sm font-medium text-agri-green-600 hover:text-agri-green-700 transition-colors"
+        >
+          En savoir plus &rarr;
+        </Link>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function IndicateursPage() {
   return (
@@ -66,35 +93,21 @@ export default function IndicateursPage() {
         </ScrollReveal>
       </Section>
 
-      {/* Indicator Grid */}
-      <Section background="white" className="pt-0">
+      {/* Indicator Grid — Row 1: first 3 */}
+      <Section background="white" className="pt-0 pb-0">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {indicators.map((indicator, index) => (
+          {indicators.slice(0, 3).map((indicator, index) => (
             <ScrollReveal key={indicator.acronym} delay={index * 0.1}>
-              <Card variant="indicator" className="h-full">
-                <CardContent className="pt-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-10 h-10 rounded-full ${indicator.color} text-white flex items-center justify-center font-bold text-sm`}
-                    >
-                      {indicator.acronym.charAt(0)}
-                    </div>
-                    <div>
-                      <CardTitle>{indicator.acronym}</CardTitle>
-                      <p className="text-xs text-text-muted">
-                        {indicator.name}
-                      </p>
-                    </div>
-                  </div>
-                  <CardDescription>{indicator.description}</CardDescription>
-                  <Link
-                    href="/indicator-request"
-                    className="inline-block text-sm font-medium text-agri-green-600 hover:text-agri-green-700 transition-colors"
-                  >
-                    En savoir plus &rarr;
-                  </Link>
-                </CardContent>
-              </Card>
+              <IndicatorItem indicator={indicator} />
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Row 2: last 2, centered */}
+        <div className="grid md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
+          {indicators.slice(3).map((indicator, index) => (
+            <ScrollReveal key={indicator.acronym} delay={(index + 3) * 0.1}>
+              <IndicatorItem indicator={indicator} />
             </ScrollReveal>
           ))}
         </div>

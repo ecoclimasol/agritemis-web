@@ -54,11 +54,12 @@ export default function MissionPage() {
       {/* Story */}
       <Section background="white">
         <ScrollReveal>
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="max-w-3xl mx-auto space-y-8">
             <SectionHeader
               eyebrow="Notre histoire"
               title="Réconcilier pratique agricole et mesure scientifique"
               align="left"
+              className="mb-4"
             />
             <p className="text-text-secondary text-lg leading-relaxed">
               Agritemis est née d&apos;un constat simple : les filières agricoles

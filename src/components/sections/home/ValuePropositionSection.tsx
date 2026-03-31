@@ -6,9 +6,9 @@ import Section from "@/components/layout/Section";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
 const steps = [
-  { icon: BarChart3, titleKey: "value_step_1_title", descKey: "value_step_1_desc" },
-  { icon: Scale, titleKey: "value_step_2_title", descKey: "value_step_2_desc" },
-  { icon: Zap, titleKey: "value_step_3_title", descKey: "value_step_3_desc" },
+  { icon: BarChart3, titleKey: "value_prop_measure_title", descKey: "value_prop_measure_desc" },
+  { icon: Scale, titleKey: "value_prop_compare_title", descKey: "value_prop_compare_desc" },
+  { icon: Zap, titleKey: "value_prop_act_title", descKey: "value_prop_act_desc" },
 ] as const;
 
 export default function ValuePropositionSection() {

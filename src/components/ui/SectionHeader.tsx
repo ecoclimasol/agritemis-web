@@ -18,12 +18,13 @@ function SectionHeader({
   return (
     <div
       className={cn(
+        "space-y-4",
         align === "center" ? "text-center" : "text-left",
         className
       )}
     >
       {eyebrow && (
-        <p className="text-xs font-semibold uppercase tracking-widest text-agri-green-600">
+        <p className="text-xs font-semibold uppercase tracking-widest text-agri-green-600 mb-2">
           {eyebrow}
         </p>
       )}
@@ -33,7 +34,7 @@ function SectionHeader({
       {subtitle && (
         <p
           className={cn(
-            "text-lg text-text-secondary max-w-3xl",
+            "text-lg text-text-secondary max-w-3xl leading-relaxed mt-3",
             align === "center" && "mx-auto"
           )}
         >
