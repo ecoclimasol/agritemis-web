@@ -19,15 +19,26 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+function SectionDivider() {
+  return (
+    <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="border-t border-border" />
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
       <HeroSection />
       <SocialProofSection />
+      <SectionDivider />
       <SolutionSection />
+      <SectionDivider />
       <ServicesSection />
       <ValuePropositionSection />
       <ProblemStatementSection />
+      <SectionDivider />
       <IndicatorsSection />
       <BenefitsSection />
       <CtaFinalSection />

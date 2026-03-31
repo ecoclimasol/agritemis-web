@@ -9,12 +9,12 @@ import ScrollReveal from "@/components/shared/ScrollReveal";
 export default function VitiScorePage() {
   const t = useTranslations("Vitiscore");
   return (
-    <main className="min-h-screen bg-surface text-text-primary">
+    <main className="bg-surface text-text-primary">
       <div className="max-w-6xl mx-auto px-4 py-16 space-y-24">
         {/* HERO */}
         <ScrollReveal>
-          <section className="text-center space-y-6">
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+          <section className="text-center space-y-8 py-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               {t("hero_title")}
             </h1>
 
@@ -41,10 +41,12 @@ export default function VitiScorePage() {
           </section>
         </ScrollReveal>
 
+        <div className="border-t border-border" />
+
         {/* QU'EST-CE QUE VITISCORE ? */}
         <ScrollReveal>
           <section className="space-y-8">
-            <div className="space-y-3">
+            <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold">
                 {t("what_title")}
               </h2>
@@ -79,10 +81,12 @@ export default function VitiScorePage() {
           </section>
         </ScrollReveal>
 
+        <div className="border-t border-border" />
+
         {/* COMMENT VITISCORE EST-IL CALCULE ? */}
         <ScrollReveal>
           <section className="space-y-8">
-            <div className="space-y-3">
+            <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold">
                 {t("how_title")}
               </h2>
@@ -107,6 +111,8 @@ export default function VitiScorePage() {
                 subtitle={t("indicator_cori_subtitle")}
                 description={t("indicator_cori_desc")}
               />
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6">
               <IndicatorCard
                 title="BRI"
                 subtitle={t("indicator_bri_subtitle")}
@@ -120,6 +126,8 @@ export default function VitiScorePage() {
             </div>
           </section>
         </ScrollReveal>
+
+        <div className="border-t border-border" />
 
         {/* CE QUE NOUS ANALYSONS */}
         <ScrollReveal>
@@ -135,6 +143,8 @@ export default function VitiScorePage() {
             </ul>
           </section>
         </ScrollReveal>
+
+        <div className="border-t border-border" />
 
         {/* USAGES CLES */}
         <ScrollReveal>
@@ -164,6 +174,8 @@ export default function VitiScorePage() {
           </section>
         </ScrollReveal>
 
+        <div className="border-t border-border" />
+
         {/* POUR QUI ? */}
         <ScrollReveal>
           <section className="space-y-8">
@@ -188,6 +200,8 @@ export default function VitiScorePage() {
           </section>
         </ScrollReveal>
 
+        <div className="border-t border-border" />
+
         {/* CE QUE VOUS RECEVEZ */}
         <ScrollReveal>
           <section className="space-y-6">
@@ -203,6 +217,8 @@ export default function VitiScorePage() {
           </section>
         </ScrollReveal>
 
+        <div className="border-t border-border" />
+
         {/* DONNEES & COUVERTURE */}
         <ScrollReveal>
           <section className="space-y-4">
@@ -214,6 +230,8 @@ export default function VitiScorePage() {
             </p>
           </section>
         </ScrollReveal>
+
+        <div className="border-t border-border" />
 
         {/* INTEGRATIONS & LIVRABLES */}
         <ScrollReveal>
@@ -227,6 +245,8 @@ export default function VitiScorePage() {
             </ul>
           </section>
         </ScrollReveal>
+
+        <div className="border-t border-border" />
 
         {/* CTA FINAL */}
         <ScrollReveal>

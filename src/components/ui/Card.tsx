@@ -13,7 +13,7 @@ const cardVariants = cva(
         feature:
           "bg-white border border-border shadow-sm hover:shadow-lg cursor-pointer",
         indicator:
-          "bg-white border border-border shadow-sm hover:shadow-lg cursor-pointer",
+          "bg-white border border-border shadow-sm hover:shadow-lg cursor-pointer border-b-[3px] border-b-agri-green-600",
         product:
           "bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 cursor-pointer",
         elevated:
@@ -41,9 +41,6 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         {...props}
       >
         {children}
-        {variant === "indicator" && (
-          <div className="h-1 w-full bg-agri-green-600" />
-        )}
       </div>
     );
   }

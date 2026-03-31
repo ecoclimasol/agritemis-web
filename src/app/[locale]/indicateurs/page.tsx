@@ -83,7 +83,7 @@ export default function IndicateursPage() {
   return (
     <>
       {/* Hero */}
-      <Section background="white" className="pb-8">
+      <Section background="white" className="pb-0">
         <ScrollReveal>
           <SectionHeader
             eyebrow="Mesure scientifique"
