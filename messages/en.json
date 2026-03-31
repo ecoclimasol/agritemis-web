@@ -69,7 +69,7 @@
     "email": "Email",
     "function": "Position",
     "submit": "Receive documentation",
-    "submitting": "Sending...",
+    "submitting": "Sending\u2026",
     "back": "Back",
 
     "success_title": "Request sent!",

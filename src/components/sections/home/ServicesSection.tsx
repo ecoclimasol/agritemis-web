@@ -49,9 +49,37 @@ export default function ServicesSection() {
           className="mb-12"
         />
 
+        {/* Row 1: First 3 services */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map(({ icon: Icon, key }, index) => (
+          {services.slice(0, 3).map(({ icon: Icon, key }, index) => (
             <ScrollReveal key={key} delay={index * 0.1}>
+              <Card variant="feature" className="h-full">
+                <CardContent className="space-y-4 pb-2">
+                  <div className="p-3 rounded-xl bg-agri-green-50 w-fit">
+                    <Icon className="h-6 w-6 text-agri-green-600" />
+                  </div>
+                  <CardTitle>{t(`service_${key}_title`)}</CardTitle>
+                  <CardDescription className="leading-relaxed">
+                    {t(`service_${key}_desc`)}
+                  </CardDescription>
+                </CardContent>
+                <CardFooter className="flex-col items-start gap-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                    {t("target_users_label")}
+                  </span>
+                  <span className="text-sm text-agri-blue-600 leading-snug">
+                    {t(`service_${key}_targets`)}
+                  </span>
+                </CardFooter>
+              </Card>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Row 2: Last 2 services, centered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
+          {services.slice(3).map(({ icon: Icon, key }, index) => (
+            <ScrollReveal key={key} delay={(index + 3) * 0.1}>
               <Card variant="feature" className="h-full">
                 <CardContent className="space-y-4 pb-2">
                   <div className="p-3 rounded-xl bg-agri-green-50 w-fit">

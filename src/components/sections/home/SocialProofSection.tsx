@@ -44,7 +44,7 @@ export default function SocialProofSection() {
                     alt={client.alt}
                     width={120}
                     height={80}
-                    className="object-contain grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                    className="object-contain grayscale opacity-70 transition-[filter,opacity] duration-300 hover:grayscale-0 hover:opacity-100"
                   />
                 </div>
               ))}

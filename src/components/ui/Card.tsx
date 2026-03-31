@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "rounded-xl overflow-hidden transition-all duration-300",
+  "rounded-xl overflow-hidden transition-shadow duration-300",
   {
     variants: {
       variant: {

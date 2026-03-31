@@ -124,7 +124,7 @@ export default function Navbar({ locale, navLinks }: NavbarProps) {
           />
 
           {/* Panel */}
-          <div className="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-xl flex flex-col">
+          <div className="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-xl flex flex-col overscroll-contain overflow-y-auto">
             {/* Close button */}
             <div className="flex justify-end px-4 py-3">
               <button
@@ -146,7 +146,7 @@ export default function Navbar({ locale, navLinks }: NavbarProps) {
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
-                        'block py-2 font-medium transition-colors duration-200',
+                        'flex items-center min-h-11 py-2 font-medium transition-colors duration-200',
                         isActive(link.href)
                           ? 'text-agri-green-600'
                           : 'text-text-secondary hover:text-agri-green-600'

@@ -183,7 +183,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   rows={5}
                   required
-                  placeholder="Décrivez votre projet ou votre question..."
+                  placeholder="Décrivez votre projet ou votre question\u2026"
                   className="w-full px-4 py-3 border border-border rounded-lg bg-white text-text-primary placeholder:text-text-muted focus:ring-2 focus:ring-agri-green-600 focus:border-transparent focus:outline-none resize-y"
                 />
               </div>
@@ -196,7 +196,7 @@ export default function ContactPage() {
                 disabled={isSubmitting}
                 className="w-full"
               >
-                {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+                {isSubmitting ? "Envoi en cours\u2026" : "Envoyer le message"}
               </Button>
             </form>
           </ScrollReveal>
@@ -212,7 +212,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   {/* Address */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center shrink-0">
                       <MapPin className="w-5 h-5 text-agri-green-600" />
                     </div>
                     <div>
@@ -220,14 +220,14 @@ export default function ContactPage() {
                         Adresse
                       </p>
                       <p className="text-sm text-text-secondary">
-                        Bordeaux, France
+                        494 Rue Léon Blum, 34000 Montpellier, France
                       </p>
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center shrink-0">
                       <Phone className="w-5 h-5 text-agri-green-600" />
                     </div>
                     <div>
@@ -235,17 +235,17 @@ export default function ContactPage() {
                         Téléphone
                       </p>
                       <a
-                        href="tel:+33500000000"
+                        href="tel:+33600000000"
                         className="text-sm text-text-secondary hover:text-agri-green-600 transition-colors"
                       >
-                        +33 5 00 00 00 00
+                        +33 (0)6 00 00 00 00
                       </a>
                     </div>
                   </div>
 
                   {/* Email */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5 text-agri-green-600" />
                     </div>
                     <div>
@@ -263,7 +263,7 @@ export default function ContactPage() {
 
                   {/* LinkedIn */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center shrink-0">
                       <Linkedin className="w-5 h-5 text-agri-green-600" />
                     </div>
                     <div>

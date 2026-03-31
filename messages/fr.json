@@ -69,7 +69,7 @@
     "email": "Email",
     "function": "Fonction",
     "submit": "Recevoir la documentation",
-    "submitting": "Envoi en cours...",
+    "submitting": "Envoi en cours\u2026",
     "back": "Retour",
     
     "success_title": "Demande envoyée !",

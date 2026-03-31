@@ -7,9 +7,9 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
 const stats = [
-  { value: "5", label: "Scientific Indicators", color: "text-agri-green-600" },
-  { value: "1000+", label: "Spray Programs Analyzed", color: "text-agri-blue-500" },
-  { value: "3", label: "Countries Covered", color: "text-agri-green-600" },
+  { value: "5", label: "Indicateurs Scientifiques", color: "text-agri-green-600" },
+  { value: "1000+", label: "Programmes de Traitement Analysés", color: "text-agri-blue-500" },
+  { value: "3", label: "Pays Couverts", color: "text-agri-green-600" },
 ] as const;
 
 export default function ProblemStatementSection() {
