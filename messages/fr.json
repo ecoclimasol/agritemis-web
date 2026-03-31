@@ -4,7 +4,10 @@
   },
   "Navigation": {
     "home": "Accueil",
-    "vitiscore": "VitiScore"
+    "vitiscore": "VitiScore",
+    "indicateurs": "Indicateurs",
+    "mission": "Mission",
+    "contact": "Contact"
   },
   "Landing": {
     "hero_headline": "La transition agroécologique ne se pilote pas à l'intuition.",

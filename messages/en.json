@@ -4,7 +4,10 @@
   },
   "Navigation": {
     "home": "Home",
-    "vitiscore": "VitiScore"
+    "vitiscore": "VitiScore",
+    "indicateurs": "Indicators",
+    "mission": "Mission",
+    "contact": "Contact"
   },
   "Landing": {
     "hero_headline": "Agroecological transition cannot be driven by intuition.",

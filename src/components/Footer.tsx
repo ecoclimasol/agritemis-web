@@ -1,49 +1,49 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation.client";
 import { useTranslations } from "next-intl";
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   const t = useTranslations("Footer");
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-slate-700 mt-20">
+    <footer className="bg-agri-green-900 text-agri-green-200 border-t border-agri-green-800 mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* LOGO + MISSION */}
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">
             {t("brand_name")}
           </h3>
-          <p className="text-sm leading-relaxed text-slate-400">
+          <p className="text-sm leading-relaxed text-agri-green-300">
             {t("mission")}
           </p>
         </div>
 
         {/* NAVIGATION */}
         <div className="space-y-4">
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-200">
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-agri-green-100">
             {t("nav_title")}
           </h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white transition-colors duration-200">
                 {t("nav_home")}
               </Link>
             </li>
             <li>
-              <Link href="/vitiscore" className="hover:text-white">
+              <Link href="/vitiscore" className="hover:text-white transition-colors duration-200">
                 {t("nav_vitiscore")}
               </Link>
             </li>
             <li>
-              <Link href="/indicateurs" className="hover:text-white">
+              <Link href="/indicateurs" className="hover:text-white transition-colors duration-200">
                 {t("nav_indicators")}
               </Link>
             </li>
             <li>
-              <Link href="/mission" className="hover:text-white">
+              <Link href="/mission" className="hover:text-white transition-colors duration-200">
                 {t("nav_mission")}
               </Link>
             </li>
@@ -52,17 +52,23 @@ export default function Footer() {
 
         {/* CONTACT */}
         <div className="space-y-4">
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-200">
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-agri-green-100">
             {t("contact_title")}
           </h4>
-          <ul className="space-y-2 text-sm text-slate-400">
-            <li>{t("contact_address")}</li>
-            <li>{t("contact_phone")}</li>
-            <li>
-              ✉️{" "}
+          <ul className="space-y-2 text-sm text-agri-green-300">
+            <li className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
+              <span>494 Rue Léon Blum, 34000 Montpellier, France</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone className="w-4 h-4 shrink-0" />
+              <span>+33 (0)6 00 00 00 00</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Mail className="w-4 h-4 shrink-0" />
               <a
                 href="mailto:contact@agritemis.com"
-                className="hover:text-white"
+                className="hover:text-white transition-colors duration-200"
               >
                 {t("contact_email")}
               </a>
@@ -72,7 +78,7 @@ export default function Footer() {
 
         {/* FOLLOW US */}
         <div className="space-y-4">
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-200">
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-agri-green-100">
             {t("follow_title")}
           </h4>
           <div className="flex items-center gap-4 text-xl">
@@ -80,26 +86,28 @@ export default function Footer() {
               href="https://www.linkedin.com/company/agritemis"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white"
+              className="hover:text-white transition-colors duration-200"
+              aria-label="LinkedIn"
             >
-              <FaLinkedin />
+              <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="mailto:contact@agritemis.com"
-              className="hover:text-white"
+              className="hover:text-white transition-colors duration-200"
+              aria-label="Email"
             >
-              <FaEnvelope />
+              <Mail className="w-5 h-5" />
             </a>
           </div>
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-agri-green-400">
             {t("follow_text")}
           </p>
         </div>
       </div>
 
       {/* COPYRIGHT */}
-      <div className="border-t border-slate-700 px-6 py-4 text-center text-xs text-slate-500">
+      <div className="border-t border-agri-green-800 px-6 py-4 text-center text-xs text-agri-green-400">
         © {currentYear} AGRITEMIS — {t("copyright_suffix")}
       </div>
     </footer>

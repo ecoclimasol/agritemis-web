@@ -1,70 +1,127 @@
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getTranslations } from 'next-intl/server';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import Image from 'next/image';
-import {Link} from '@/i18n/navigation.client'; // Importe depuis notre nouveau fichier client
-import "../globals.css"; // Référence au CSS global de Tailwind
+import { Link } from '@/i18n/navigation.client';
+import Footer from '@/components/Footer';
+import "../globals.css";
 
-// C'est ici qu'on utilise le code corrigé pour Next.js 16 (await params)
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  display: 'swap',
+});
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'HomePage' });
+
+  return {
+    title: {
+      default: `${t('title')} — Mesure scientifique du risque pesticide`,
+      template: `%s | AGRITEMIS`,
+    },
+    description: 'Agritemis propose des indicateurs scientifiques pour mesurer et réduire le risque pesticide dans les filières agricoles.',
+    metadataBase: new URL('https://agritemis.com'),
+    alternates: {
+      languages: {
+        fr: '/fr',
+        en: '/en',
+        es: '/es',
+      },
+    },
+    openGraph: {
+      type: 'website',
+      siteName: 'AGRITEMIS',
+      locale: locale === 'fr' ? 'fr_FR' : locale === 'es' ? 'es_ES' : 'en_US',
+    },
+  };
+}
+
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>; 
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params; // Le "await" est crucial pour Next.js 16
-  
+  const { locale } = await params;
   const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: 'Navigation' });
+
+  const navLinks = [
+    { href: '/' as const, label: t('home') },
+    { href: '/vitiscore' as const, label: t('vitiscore') },
+    { href: '/indicateurs' as const, label: t('indicateurs') },
+    { href: '/mission' as const, label: t('mission') },
+    { href: '/contact' as const, label: t('contact') },
+  ];
 
   return (
-    <html lang={locale}>
-      <body className="font-sans antialiased bg-gray-50 min-h-screen">
+    <html lang={locale} className={plusJakarta.variable}>
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen">
         <NextIntlClientProvider messages={messages}>
-            {/* Barre de navigation : Logo et sélecteur de langue */}
-            <nav className="bg-white shadow-md p-4 flex justify-between items-center">
-                <div className="flex items-center">
-                    {/* Logo AGRITEMIS (top-left) */}
-                    <div className="w-48 h-auto relative">
-                        <Image 
-                            src="/logo_agritemis.png" 
-                            alt="Agritemis Logo" 
-                            width={3514} 
-                            height={512} 
-                            style={{objectFit: "contain"}}
-                            priority
-                        />
-                    </div>
-                </div>
-                {/* Navigation Principale */}
-                <div className="space-x-4">
-                    <Link href="/" className="hover:text-green-600 font-bold">Home</Link>
-                    <Link href="/vitiscore" className="hover:text-green-600 font-bold">VitiScore</Link>
-                    <Link href="/chatbot" className="hover:text-green-600 font-bold">ChatBot IA</Link>
-                    <Link href="/planetscore" className="hover:text-green-600 font-bold">PlanetScore</Link>
-                    <Link href="/blog" className="hover:text-green-600 font-bold">Blog</Link>
-                </div>
-                {/* Sélecteur de langue */}
-                <div className="space-x-2 text-sm">
-                    <Link href="/" locale="fr" className="text-gray-500 hover:text-black font-medium">FR</Link>
-                    <span className="text-gray-300">|</span>
-                    <Link href="/" locale="en" className="text-gray-500 hover:text-black font-medium">EN</Link>
-                    <span className="text-gray-300">|</span>
-                    <Link href="/" locale="es" className="text-gray-500 hover:text-black font-medium">ES</Link>
-                </div>
-            </nav>
+          {/* Skip to content link for accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-agri-green-600 focus:text-white focus:rounded-md"
+          >
+            Skip to content
+          </a>
 
-            {/* Contenu principal */}
-            <main className="p-8">
-                {children}
-            </main>
+          {/* Navigation */}
+          <nav className="bg-white shadow-md px-4 py-3 flex justify-between items-center">
+            <Link href="/" className="flex items-center">
+              <div className="w-40 h-auto relative">
+                <Image
+                  src="/logo_agritemis.png"
+                  alt="Agritemis Logo"
+                  width={3514}
+                  height={512}
+                  style={{ objectFit: 'contain' }}
+                  priority
+                />
+              </div>
+            </Link>
 
-            {/* Footer global */}
+            {/* Desktop navigation */}
+            <div className="hidden md:flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-text-secondary hover:text-agri-green-600 font-medium transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Language selector */}
+            <div className="hidden md:flex items-center space-x-2 text-sm">
+              <Link href="/" locale="fr" className={`font-medium transition-colors duration-200 ${locale === 'fr' ? 'text-agri-green-600' : 'text-text-muted hover:text-text-primary'}`}>
+                FR
+              </Link>
+              <span className="text-border">|</span>
+              <Link href="/" locale="en" className={`font-medium transition-colors duration-200 ${locale === 'en' ? 'text-agri-green-600' : 'text-text-muted hover:text-text-primary'}`}>
+                EN
+              </Link>
+              <span className="text-border">|</span>
+              <Link href="/" locale="es" className={`font-medium transition-colors duration-200 ${locale === 'es' ? 'text-agri-green-600' : 'text-text-muted hover:text-text-primary'}`}>
+                ES
+              </Link>
+            </div>
+          </nav>
+
+          {/* Main content */}
+          <main id="main-content" className="px-4 py-8 md:px-6">
+            {children}
+          </main>
+
+          {/* Footer */}
           <Footer />
-          
         </NextIntlClientProvider>
       </body>
     </html>
   );
 }
-import Footer from "@/components/Footer";
-

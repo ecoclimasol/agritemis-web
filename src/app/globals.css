@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ─── Brand Colors: Green ─── */
+  --color-agri-green-50: #F0F7F2;
+  --color-agri-green-100: #D9EDDF;
+  --color-agri-green-200: #B3DBC0;
+  --color-agri-green-300: #7DC495;
+  --color-agri-green-400: #4AAD6E;
+  --color-agri-green-500: #2D8A4F;
+  --color-agri-green-600: #1D6438;
+  --color-agri-green-700: #175430;
+  --color-agri-green-800: #114427;
+  --color-agri-green-900: #0B331D;
+  --color-agri-green-950: #062214;
+
+  /* ─── Brand Colors: Blue ─── */
+  --color-agri-blue-50: #EBF5FF;
+  --color-agri-blue-100: #CCE5FF;
+  --color-agri-blue-200: #99CBFF;
+  --color-agri-blue-300: #66B0FF;
+  --color-agri-blue-400: #3396FF;
+  --color-agri-blue-500: #007BFF;
+  --color-agri-blue-600: #0062CC;
+  --color-agri-blue-700: #004A99;
+  --color-agri-blue-800: #003166;
+  --color-agri-blue-900: #001933;
+
+  /* ─── Semantic Colors ─── */
+  --color-success: #16A34A;
+  --color-warning: #EAB308;
+  --color-error: #DC2626;
+  --color-info: #0284C7;
+
+  /* ─── Surface Colors ─── */
+  --color-background: #FFFFFF;
+  --color-foreground: #0F172A;
+  --color-surface: #F8FAFC;
+  --color-surface-elevated: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-border-light: #F1F5F9;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+
+  /* ─── Typography ─── */
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+
+  /* ─── Animations ─── */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+  --animate-slide-in: slide-in 0.4s ease-out forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Accessibility: reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
+/* ─── Focus ring for keyboard navigation ─── */
+*:focus-visible {
+  outline: 2px solid var(--color-agri-green-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
 }

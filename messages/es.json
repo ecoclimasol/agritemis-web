@@ -4,7 +4,10 @@
   },
   "Navigation": {
     "home": "Inicio",
-    "vitiscore": "VitiScore"
+    "vitiscore": "VitiScore",
+    "indicateurs": "Indicadores",
+    "mission": "Misión",
+    "contact": "Contacto"
   },
   "Landing": {
     "hero_headline": "La transición agroecológica no se guía por la intuición.",
