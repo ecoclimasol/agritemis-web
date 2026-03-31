@@ -1,21 +1,27 @@
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-// Nous utilisons le Link client que nous avons créé dans l'étape précédente
-import { Link } from '@/i18n/navigation.client';
+import { getTranslations } from 'next-intl/server';
 
-import HeroSection from '@/components/HeroSection';
-import SocialProofSection from '@/components/SocialProofSection';
-import ProblemStatementSection from '@/components/ProblemStatementSection';
-import IndicatorsSection from '@/components/IndicatorsSection';
-import BenefitsSection from '@/components/BenefitsSection';
-import CtaFinalSection from '@/components/CtaFinalSection';
-import SolutionSection from '@/components/SolutionSection';
-import ValuePropositionSection from '@/components/ValuePropositionSection';
-import ServicesSection from '@/components/ServicesSection';
+import HeroSection from '@/components/sections/home/HeroSection';
+import SocialProofSection from '@/components/sections/home/SocialProofSection';
+import SolutionSection from '@/components/sections/home/SolutionSection';
+import ServicesSection from '@/components/sections/home/ServicesSection';
+import ValuePropositionSection from '@/components/sections/home/ValuePropositionSection';
+import ProblemStatementSection from '@/components/sections/home/ProblemStatementSection';
+import IndicatorsSection from '@/components/sections/home/IndicatorsSection';
+import BenefitsSection from '@/components/sections/home/BenefitsSection';
+import CtaFinalSection from '@/components/sections/home/CtaFinalSection';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Landing' });
+  return {
+    title: 'Mesure scientifique du risque pesticide',
+    description: t('hero_punchline'),
+  };
+}
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white">
+    <>
       <HeroSection />
       <SocialProofSection />
       <SolutionSection />
@@ -25,6 +31,6 @@ export default function HomePage() {
       <IndicatorsSection />
       <BenefitsSection />
       <CtaFinalSection />
-    </main>
+    </>
   );
 }
