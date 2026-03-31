@@ -59,6 +59,49 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={plusJakarta.variable}>
       <body className="font-sans antialiased bg-background text-foreground min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': 'https://agritemis.com/#organization',
+                  name: 'AGRITEMIS',
+                  url: 'https://agritemis.com',
+                  logo: 'https://agritemis.com/logo_agritemis.png',
+                  description: 'Scientific measurement of pesticide risk for agricultural supply chains',
+                  address: {
+                    '@type': 'PostalAddress',
+                    streetAddress: '494 Rue Léon Blum',
+                    addressLocality: 'Montpellier',
+                    postalCode: '34000',
+                    addressCountry: 'FR',
+                  },
+                  parentOrganization: {
+                    '@type': 'Organization',
+                    name: 'EcoClimaSol Holding',
+                  },
+                  sameAs: ['https://www.linkedin.com/company/agritemis'],
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    email: 'contact@agritemis.com',
+                    contactType: 'sales',
+                  },
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': 'https://agritemis.com/#website',
+                  url: 'https://agritemis.com',
+                  name: 'AGRITEMIS',
+                  publisher: { '@id': 'https://agritemis.com/#organization' },
+                  inLanguage: ['fr', 'en', 'es'],
+                },
+              ],
+            }),
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           {/* Skip to content link for accessibility */}
           <a
