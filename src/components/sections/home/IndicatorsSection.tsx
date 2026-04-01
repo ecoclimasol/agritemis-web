@@ -50,7 +50,7 @@ function IndicatorCardItem({ indicator, t }: { indicator: typeof indicators[numb
         </CardDescription>
 
         <Link
-          href="/indicator-request"
+          href={`/indicateurs/${indicator.key}`}
           className="mt-auto pt-3 text-agri-green-600 hover:underline font-semibold text-sm inline-flex items-center gap-1"
         >
           {t("indicator_learn_more")}

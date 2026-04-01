@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, Mail, Linkedin } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { MapPin, Mail, Linkedin } from "lucide-react";
 import Section from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/Input";
@@ -9,24 +11,27 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
-const subjectOptions = [
-  { value: "", label: "Sélectionnez un sujet" },
-  { value: "general", label: "Général" },
-  { value: "vitiscore", label: "VitiScore" },
-  { value: "indicateurs", label: "Indicateurs" },
-  { value: "partenariat", label: "Partenariat" },
-];
-
 export default function ContactPage() {
+  const t = useTranslations("ContactPage");
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     organization: "",
-    subject: "",
+    subject: searchParams.get("subject") ?? "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const subjectOptions = [
+    { value: "", label: t("subject_placeholder") },
+    { value: "general", label: t("subject_general") },
+    { value: "vitiscore", label: "VitiScore" },
+    { value: "waterscore", label: "WaterScore" },
+    { value: "indicateurs", label: t("subject_indicators") },
+    { value: "partenariat", label: t("subject_partnership") },
+  ];
 
   function handleChange(
     e: React.ChangeEvent<
@@ -41,11 +46,21 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setSubmitted(true);
-    setIsSubmitting(false);
+      if (!res.ok) throw new Error("Server error");
+
+      setSubmitted(true);
+    } catch {
+      alert(t("error_message"));
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -56,11 +71,10 @@ export default function ContactPage() {
             <Mail className="w-8 h-8 text-agri-green-600" />
           </div>
           <h2 className="text-2xl font-bold text-text-primary">
-            Message envoyé
+            {t("success_title")}
           </h2>
           <p className="text-text-secondary">
-            Merci pour votre message. Notre équipe vous répondra dans les
-            meilleurs délais.
+            {t("success_message")}
           </p>
         </div>
       </Section>
@@ -72,9 +86,9 @@ export default function ContactPage() {
       <Section background="white">
         <ScrollReveal>
           <SectionHeader
-            eyebrow="Contact"
-            title="Parlons de votre projet"
-            subtitle="Une question, une demande de démonstration ou un partenariat ? Contactez-nous."
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            subtitle={t("subtitle")}
           />
         </ScrollReveal>
       </Section>
@@ -94,7 +108,7 @@ export default function ContactPage() {
                   htmlFor="name"
                   className="block text-sm font-medium text-text-primary mb-2"
                 >
-                  Nom complet *
+                  {t("label_name")} *
                 </label>
                 <Input
                   type="text"
@@ -102,7 +116,7 @@ export default function ContactPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Jean Dupont"
+                  placeholder={t("placeholder_name")}
                   required
                 />
               </div>
@@ -121,7 +135,7 @@ export default function ContactPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="jean@entreprise.com"
+                  placeholder={t("placeholder_email")}
                   required
                 />
               </div>
@@ -132,7 +146,7 @@ export default function ContactPage() {
                   htmlFor="organization"
                   className="block text-sm font-medium text-text-primary mb-2"
                 >
-                  Organisation
+                  {t("label_organization")}
                 </label>
                 <Input
                   type="text"
@@ -140,7 +154,7 @@ export default function ContactPage() {
                   name="organization"
                   value={formData.organization}
                   onChange={handleChange}
-                  placeholder="Nom de votre organisation"
+                  placeholder={t("placeholder_organization")}
                 />
               </div>
 
@@ -150,7 +164,7 @@ export default function ContactPage() {
                   htmlFor="subject"
                   className="block text-sm font-medium text-text-primary mb-2"
                 >
-                  Sujet *
+                  {t("label_subject")} *
                 </label>
                 <select
                   id="subject"
@@ -183,7 +197,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   rows={5}
                   required
-                  placeholder="Décrivez votre projet ou votre question\u2026"
+                  placeholder={t("placeholder_message")}
                   className="w-full px-4 py-3 border border-border rounded-lg bg-white text-text-primary placeholder:text-text-muted focus:ring-2 focus:ring-agri-green-600 focus:border-transparent focus:outline-none resize-y"
                 />
               </div>
@@ -196,7 +210,7 @@ export default function ContactPage() {
                 disabled={isSubmitting}
                 className="w-full"
               >
-                {isSubmitting ? "Envoi en cours\u2026" : "Envoyer le message"}
+                {isSubmitting ? t("submitting") : t("submit")}
               </Button>
             </form>
           </ScrollReveal>
@@ -206,7 +220,7 @@ export default function ContactPage() {
             <Card variant="elevated" className="h-fit">
               <CardContent className="pt-6 space-y-8">
                 <h3 className="text-xl font-semibold text-text-primary">
-                  Coordonnées
+                  {t("info_title")}
                 </h3>
 
                 <div className="space-y-6">
@@ -217,47 +231,11 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-text-primary">
-                        Adresse
+                        {t("label_address")}
                       </p>
                       <p className="text-sm text-text-secondary">
                         494 Rue Léon Blum, 34000 Montpellier, France
                       </p>
-                    </div>
-                  </div>
-
-                  {/* Phone */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-agri-green-600" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-text-primary">
-                        Téléphone
-                      </p>
-                      <a
-                        href="tel:+33600000000"
-                        className="text-sm text-text-secondary hover:text-agri-green-600 transition-colors"
-                      >
-                        +33 (0)6 00 00 00 00
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Email */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-agri-green-600" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-text-primary">
-                        Email
-                      </p>
-                      <a
-                        href="mailto:contact@agritemis.com"
-                        className="text-sm text-text-secondary hover:text-agri-green-600 transition-colors"
-                      >
-                        contact@agritemis.com
-                      </a>
                     </div>
                   </div>
 

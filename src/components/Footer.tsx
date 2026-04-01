@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation.client";
 import { useTranslations } from "next-intl";
-import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -38,6 +38,11 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/waterscore" className="hover:text-white transition-colors duration-200">
+                {t("nav_waterscore")}
+              </Link>
+            </li>
+            <li>
               <Link href="/indicateurs" className="hover:text-white transition-colors duration-200">
                 {t("nav_indicators")}
               </Link>
@@ -61,17 +66,13 @@ export default function Footer() {
               <span>494 Rue Léon Blum, 34000 Montpellier, France</span>
             </li>
             <li className="flex items-center gap-2">
-              <Phone className="w-4 h-4 shrink-0" />
-              <span>+33 (0)6 00 00 00 00</span>
-            </li>
-            <li className="flex items-center gap-2">
               <Mail className="w-4 h-4 shrink-0" />
-              <a
-                href="mailto:contact@agritemis.com"
+              <Link
+                href="/contact"
                 className="hover:text-white transition-colors duration-200"
               >
-                {t("contact_email")}
-              </a>
+                {t("contact_title")}
+              </Link>
             </li>
           </ul>
         </div>
@@ -91,13 +92,13 @@ export default function Footer() {
             >
               <Linkedin className="w-5 h-5" />
             </a>
-            <a
-              href="mailto:contact@agritemis.com"
+            <Link
+              href="/contact"
               className="hover:text-white transition-colors duration-200"
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />
-            </a>
+            </Link>
           </div>
 
           <p className="text-xs text-agri-green-400">

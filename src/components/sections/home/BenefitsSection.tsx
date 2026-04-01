@@ -6,7 +6,7 @@ import { Check } from "lucide-react";
 import Section from "@/components/layout/Section";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
-const benefitKeys = [1, 2, 3, 4] as const;
+const benefitKeys = [1, 2, 3, 4, 5] as const;
 
 export default function BenefitsSection() {
   const t = useTranslations("Landing");

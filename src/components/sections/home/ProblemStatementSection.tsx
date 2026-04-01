@@ -9,7 +9,7 @@ import ScrollReveal from "@/components/shared/ScrollReveal";
 const stats = [
   { value: "5", label: "Indicateurs Scientifiques", color: "text-agri-green-600" },
   { value: "1000+", label: "Programmes de Traitement Analysés", color: "text-agri-blue-500" },
-  { value: "3", label: "Pays Couverts", color: "text-agri-green-600" },
+  { value: "🌍", label: "Couverture Mondiale", color: "text-agri-green-600" },
 ] as const;
 
 export default function ProblemStatementSection() {
