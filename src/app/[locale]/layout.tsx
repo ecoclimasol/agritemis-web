@@ -27,12 +27,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: '/fr',
         en: '/en',
         es: '/es',
+        pt: '/pt',
       },
     },
     openGraph: {
       type: 'website',
       siteName: 'AGRITEMIS',
-      locale: locale === 'fr' ? 'fr_FR' : locale === 'es' ? 'es_ES' : 'en_US',
+      locale: locale === 'fr' ? 'fr_FR' : locale === 'es' ? 'es_ES' : locale === 'pt' ? 'pt_PT' : 'en_US',
     },
   };
 }
@@ -51,8 +52,10 @@ export default async function LocaleLayout({
   const navLinks = [
     { href: '/', label: t('home') },
     { href: '/vitiscore', label: t('vitiscore') },
+    { href: '/waterscore', label: t('waterscore') },
     { href: '/indicateurs', label: t('indicateurs') },
     { href: '/mission', label: t('mission') },
+    { href: '/blog', label: t('blog') },
     { href: '/contact', label: t('contact') },
   ];
 
@@ -89,6 +92,20 @@ export default async function LocaleLayout({
                     email: 'contact@agritemis.com',
                     contactType: 'sales',
                   },
+                },
+                {
+                  '@type': 'Product',
+                  name: 'VitiScore',
+                  description: 'Reference indicator to assess and manage the phytosanitary footprint of vineyard treatments.',
+                  brand: { '@type': 'Brand', name: 'AGRITEMIS' },
+                  url: 'https://agritemis.com/fr/vitiscore',
+                },
+                {
+                  '@type': 'Product',
+                  name: 'WaterScore',
+                  description: 'Composite score to measure and manage the pesticide footprint on water resources.',
+                  brand: { '@type': 'Brand', name: 'AGRITEMIS' },
+                  url: 'https://agritemis.com/fr/waterscore',
                 },
                 {
                   '@type': 'WebSite',

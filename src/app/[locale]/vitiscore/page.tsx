@@ -1,13 +1,23 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation.client";
 import { Button } from "@/components/ui/Button";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/Card";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
 export default function VitiScorePage() {
   const t = useTranslations("Vitiscore");
+  const tLanding = useTranslations("Landing");
   return (
     <main className="bg-surface text-text-primary">
       <div className="max-w-6xl mx-auto px-4 py-16 space-y-24">
@@ -15,7 +25,9 @@ export default function VitiScorePage() {
         <ScrollReveal>
           <section className="text-center space-y-8 py-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              {t("hero_title")}
+              {t("hero_title_name")}
+              <br />
+              <span className="text-3xl md:text-4xl lg:text-5xl">{t("hero_title_desc")}</span>
             </h1>
 
             <p className="text-lg md:text-xl text-text-secondary">
@@ -30,11 +42,6 @@ export default function VitiScorePage() {
               <Button variant="primary" size="lg" asChild>
                 <Link href="/contact?subject=vitiscore">
                   {t("hero_cta_analyze")}
-                </Link>
-              </Button>
-              <Button variant="secondary" size="lg" asChild>
-                <Link href="/contact?subject=vitiscore">
-                  {t("hero_cta_report")}
                 </Link>
               </Button>
             </div>
@@ -83,6 +90,50 @@ export default function VitiScorePage() {
 
         <div className="border-t border-border" />
 
+        {/* ACCOMPAGNEMENT */}
+        <ScrollReveal>
+          <section className="space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold">
+                {t("coaching_title")}
+              </h2>
+              <p className="text-text-secondary text-lg leading-relaxed">
+                {t("coaching_intro")}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-3">
+                <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center">
+                  <span className="text-agri-green-600 text-xl font-bold">1</span>
+                </div>
+                <h3 className="text-base font-semibold">{t("coaching_step1_title")}</h3>
+                <p className="text-sm text-text-secondary">{t("coaching_step1_desc")}</p>
+              </div>
+              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-3">
+                <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center">
+                  <span className="text-agri-green-600 text-xl font-bold">2</span>
+                </div>
+                <h3 className="text-base font-semibold">{t("coaching_step2_title")}</h3>
+                <p className="text-sm text-text-secondary">{t("coaching_step2_desc")}</p>
+              </div>
+              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-3">
+                <div className="w-10 h-10 rounded-lg bg-agri-green-100 flex items-center justify-center">
+                  <span className="text-agri-green-600 text-xl font-bold">3</span>
+                </div>
+                <h3 className="text-base font-semibold">{t("coaching_step3_title")}</h3>
+                <p className="text-sm text-text-secondary">{t("coaching_step3_desc")}</p>
+              </div>
+            </div>
+
+            <p className="text-sm text-text-muted italic">
+              {t("coaching_conclusion")}
+            </p>
+          </section>
+        </ScrollReveal>
+
+        <div className="border-t border-border" />
+
         {/* COMMENT VITISCORE EST-IL CALCULE ? */}
         <ScrollReveal>
           <section className="space-y-8">
@@ -95,35 +146,51 @@ export default function VitiScorePage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <IndicatorCard
-                title="ARI"
-                subtitle={t("indicator_ari_subtitle")}
-                description={t("indicator_ari_desc")}
-              />
-              <IndicatorCard
-                title="CRI"
-                subtitle={t("indicator_cri_subtitle")}
-                description={t("indicator_cri_desc")}
-              />
-              <IndicatorCard
-                title="CORI"
-                subtitle={t("indicator_cori_subtitle")}
-                description={t("indicator_cori_desc")}
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6">
-              <IndicatorCard
-                title="BRI"
-                subtitle={t("indicator_bri_subtitle")}
-                description={t("indicator_bri_desc")}
-              />
-              <IndicatorCard
-                title="WARI"
-                subtitle={t("indicator_wari_subtitle")}
-                description={t("indicator_wari_desc")}
-              />
-            </div>
+            {[
+              [
+                { id: "CRI", key: "cri", image: "/indicators/cri.png" },
+                { id: "BRI", key: "bri", image: "/indicators/bri.png" },
+              ],
+              [
+                { id: "ARI", key: "ari", image: "/indicators/ari.png" },
+                { id: "CORI", key: "cori", image: "/indicators/cori.png" },
+              ],
+            ].map((row, rowIndex) => (
+              <div key={rowIndex} className="grid md:grid-cols-2 gap-6 mt-6 first:mt-0">
+                {row.map((indicator) => (
+                  <Card key={indicator.id} variant="indicator" className="flex flex-col h-full">
+                    <CardHeader className="p-0">
+                      <div className="relative h-48 w-full bg-surface rounded-t-xl overflow-hidden">
+                        <Image
+                          src={indicator.image}
+                          alt={tLanding(`indicator_${indicator.key}_title`)}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex flex-col flex-1 gap-3 pt-4">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-text-muted text-center">
+                        {indicator.id}
+                      </p>
+                      <CardTitle className="text-lg font-bold">
+                        {tLanding(`indicator_${indicator.key}_title`)}
+                      </CardTitle>
+                      <CardDescription className="text-sm leading-relaxed">
+                        {tLanding(`indicator_${indicator.key}_short_desc`)}
+                      </CardDescription>
+                      <Link
+                        href={`/indicateurs/${indicator.key}`}
+                        className="mt-auto pt-3 text-agri-green-600 hover:underline font-semibold text-sm inline-flex items-center gap-1"
+                      >
+                        {tLanding("indicator_learn_more")}
+                        <ArrowRight size={16} />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ))}
           </section>
         </ScrollReveal>
 
