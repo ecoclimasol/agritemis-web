@@ -20,7 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export function generateStaticParams() {
-  return validSlugs.map((slug) => ({ slug }));
+  const locales = ["fr", "en", "es", "pt"];
+  return locales.flatMap((locale) =>
+    validSlugs.map((slug) => ({ locale, slug }))
+  );
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
