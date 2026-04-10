@@ -21,22 +21,18 @@ export default function WaterScorePage() {
 
   return (
     <main className="bg-surface text-text-primary">
-      <div className="max-w-6xl mx-auto px-4 py-16 space-y-24">
+      <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
         {/* HERO */}
         <ScrollReveal>
-          <section className="text-center space-y-8 py-8">
+          <section className="text-center space-y-6 py-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              {t("hero_title_name")}
+              <span className="text-blue-600">{t("hero_title_name")}</span>
               <br />
               <span className="text-3xl md:text-4xl lg:text-5xl">{t("hero_title_desc")}</span>
             </h1>
 
             <p className="text-lg md:text-xl text-text-secondary">
               {t("hero_subtitle")}
-            </p>
-
-            <p className="text-sm md:text-base text-text-muted">
-              {t("hero_context")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
@@ -61,21 +57,149 @@ export default function WaterScorePage() {
               <p className="text-text-secondary text-lg leading-relaxed">
                 {t("what_intro")}
               </p>
+              <p className="text-text-secondary">
+                Le Water Quality Score repose sur l&apos;indicateur de risque{" "}
+                <Link
+                  href="/indicateurs/wari"
+                  className="font-semibold text-blue-600 hover:underline inline-flex items-center gap-1"
+                >
+                  WARI — en savoir plus
+                  <ArrowRight size={14} />
+                </Link>
+              </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-2">
-                <h3 className="text-lg font-semibold">{t("what_wari_title")}</h3>
-                <p className="text-sm text-text-secondary">{t("what_wari_desc")}</p>
+            {/* SCHEMA 3 ETAPES — layout horizontal sur desktop */}
+            <div className="flex flex-col md:flex-row items-stretch gap-0">
+
+              {/* Étape 1 */}
+              <div className="flex-1 rounded-xl md:rounded-r-none bg-white shadow-sm border border-border overflow-hidden">
+                <div className="px-4 py-2 border-b border-border" style={{background:"#455a64"}}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 1</div>
+                  <div className="text-xs font-bold text-white">Calendrier cultural</div>
+                  <div className="text-[10px] text-white/80">WARI par produit — cumul saison</div>
+                </div>
+                <div className="px-4 py-3 overflow-x-auto">
+                  <table className="w-full text-xs text-left border-collapse">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 text-gray-400 uppercase tracking-wide">
+                        <th className="pb-1 pr-3 font-bold text-left">Produit</th>
+                        <th className="pb-1 pr-3 font-bold text-right">Dose</th>
+                        <th className="pb-1 font-bold text-right">WARI</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 text-gray-600">
+                      {[
+                        { name: "Produit A", dose: "0,2 l/ha",  wari: 48,  color: "bg-yellow-400 text-gray-800" },
+                        { name: "Produit B", dose: "1,5 kg/ha", wari: 12,  color: "bg-green-800 text-white" },
+                        { name: "Produit C", dose: "0,8 l/ha",  wari: 74,  color: "bg-orange-400 text-white" },
+                        { name: "Produit D", dose: "0,3 l/ha",  wari: 31,  color: "bg-lime-500 text-white" },
+                        { name: "Produit E", dose: "2,0 l/ha",  wari: 95,  color: "bg-red-500 text-white" },
+                      ].map((row) => (
+                        <tr key={row.name}>
+                          <td className="py-1 pr-3 font-semibold">{row.name}</td>
+                          <td className="py-1 pr-3 text-right text-gray-400">{row.dose}</td>
+                          <td className="py-1 text-right">
+                            <span className={`inline-block rounded px-2 py-0.5 font-bold text-xs ${row.color}`}>{row.wari}</span>
+                          </td>
+                        </tr>
+                      ))}
+                      <tr className="border-t-2 border-gray-300">
+                        <td className="pt-2 font-bold text-blue-800">Σ Total</td>
+                        <td></td>
+                        <td className="pt-2 text-right font-bold text-blue-800 text-sm">260</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-2">
-                <h3 className="text-lg font-semibold">{t("what_cumul_title")}</h3>
-                <p className="text-sm text-text-secondary">{t("what_cumul_desc")}</p>
+
+              {/* Flèche */}
+              <div className="flex items-center justify-center py-2 md:py-0 md:px-2 text-gray-400 text-xl">→</div>
+
+              {/* Étape 2 */}
+              <div className="flex-[1.3] rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
+                <div className="px-4 py-2 border-b border-border" style={{background:"#607d8b"}}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 2</div>
+                  <div className="text-xs font-bold text-white">De l&apos;indicateur de risque au score de qualité</div>
+                  <div className="text-[10px] text-white/80">Relation inverse entre WARI et Water Quality Score</div>
+                </div>
+                <div className="px-4 py-3 space-y-2">
+                  <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-xs text-center text-red-800 font-semibold leading-6">
+                    WARI cumulé <span className="text-base font-black">↑</span><br/>
+                    <span className="opacity-50 text-sm">=</span><br/>
+                    Risque fort pour l&apos;eau<br/>
+                    <span className="opacity-50 text-sm">=</span><br/>
+                    Water Quality Score <span className="text-base font-black">↓</span>
+                  </div>
+                  <div className="text-[10px] font-bold text-center text-slate-500 bg-slate-100 rounded px-2 py-1 tracking-wide">
+                    ⇄ &nbsp;ATTENTION ! Relation inverse&nbsp; ⇄
+                  </div>
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-gray-200 text-gray-400 uppercase tracking-wide text-center">
+                        <th className="pb-1 pr-2 font-bold">WARI cumulé</th>
+                        <th className="pb-1 pr-2 font-bold">Risque eau</th>
+                        <th className="pb-1 font-bold">Water Quality Score</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 text-center">
+                      <tr>
+                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-green-800 text-white">très faible</span></td>
+                        <td className="py-1 pr-2 text-green-800 font-medium">Très faible ✓</td>
+                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-green-800 text-white">80–100</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-lime-500 text-white">faible</span></td>
+                        <td className="py-1 pr-2 text-lime-600 font-medium">Faible</td>
+                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-lime-500 text-white">60–80</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-yellow-400 text-gray-800">modéré</span></td>
+                        <td className="py-1 pr-2 text-yellow-600 font-medium">Modéré</td>
+                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-yellow-400 text-gray-800">40–60</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-orange-500 text-white">élevé</span></td>
+                        <td className="py-1 pr-2 text-orange-600 font-medium">Élevé</td>
+                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-orange-500 text-white">20–40</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-red-600 text-white">très élevé</span></td>
+                        <td className="py-1 pr-2 text-red-600 font-medium">Très élevé ✗</td>
+                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-red-600 text-white">0–20</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-2">
-                <h3 className="text-lg font-semibold">{t("what_score_title")}</h3>
-                <p className="text-sm text-text-secondary">{t("what_score_desc")}</p>
+
+              {/* Flèche */}
+              <div className="flex items-center justify-center py-2 md:py-0 md:px-2 text-gray-400 text-xl">→</div>
+
+              {/* Résultat */}
+              <div className="flex-1 rounded-xl md:rounded-l-none bg-white shadow-sm border border-border overflow-hidden">
+                <div className="px-4 py-2 border-b border-border bg-blue-800">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Résultat</div>
+                  <div className="text-xs font-bold text-white">Water Quality Score</div>
+                  <div className="text-[10px] text-white/80">Score de qualité eau (0–100)</div>
+                </div>
+                <div className="px-4 py-3 space-y-1.5">
+                  {[
+                    { label: "80–100", desc: "Risque très faible pour l'eau", color: "bg-green-800 text-white" },
+                    { label: "60–80",  desc: "Risque faible",                 color: "bg-lime-500 text-white" },
+                    { label: "40–60",  desc: "Risque modéré",                 color: "bg-yellow-400 text-gray-800" },
+                    { label: "20–40",  desc: "Risque élevé",                  color: "bg-orange-500 text-white" },
+                    { label: "0–20",   desc: "Risque très élevé",             color: "bg-red-600 text-white" },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center gap-2">
+                      <span className={`inline-block rounded px-2 py-0.5 text-xs font-bold min-w-[44px] text-center ${item.color}`}>{item.label}</span>
+                      <span className="text-xs text-gray-500">{item.desc}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
+
             </div>
 
             <p className="text-sm md:text-base text-text-secondary">
@@ -113,95 +237,6 @@ export default function WaterScorePage() {
             <p className="text-sm text-text-muted italic">
               {t("architecture_conclusion")}
             </p>
-          </section>
-        </ScrollReveal>
-
-        <div className="border-t border-border" />
-
-        {/* INDICATEUR WARI */}
-        <ScrollReveal>
-          <section className="space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-bold">
-                {t("wari_title")}
-              </h2>
-              <p className="text-text-secondary">
-                {t("wari_intro")}
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-3">
-                <div className="inline-flex items-center justify-center rounded-full bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1">
-                  {t("wari_toxicity_badge")}
-                </div>
-                <h3 className="text-base font-semibold">{t("wari_toxicity_title")}</h3>
-                <p className="text-sm text-text-secondary">{t("wari_toxicity_desc")}</p>
-              </div>
-              <div className="rounded-2xl bg-white shadow-sm border border-border p-6 space-y-3">
-                <div className="inline-flex items-center justify-center rounded-full bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1">
-                  {t("wari_exposure_badge")}
-                </div>
-                <h3 className="text-base font-semibold">{t("wari_exposure_title")}</h3>
-                <p className="text-sm text-text-secondary">{t("wari_exposure_desc")}</p>
-              </div>
-            </div>
-          </section>
-        </ScrollReveal>
-
-        <div className="border-t border-border" />
-
-        {/* INDICATEURS COMPLÉMENTAIRES */}
-        <ScrollReveal>
-          <section className="space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-bold">
-                {t("indicators_title")}
-              </h2>
-              <p className="text-text-secondary">
-                {t("indicators_intro")}
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { id: "CRI", key: "cri", image: "/indicators/cri.png" },
-                { id: "BRI", key: "bri", image: "/indicators/bri.png" },
-                { id: "ARI", key: "ari", image: "/indicators/ari.png" },
-                { id: "CORI", key: "cori", image: "/indicators/cori.png" },
-              ].map((indicator) => (
-                <Card key={indicator.id} variant="indicator" className="flex flex-col h-full">
-                  <CardHeader className="p-0">
-                    <div className="relative h-48 w-full bg-surface rounded-t-xl overflow-hidden">
-                      <Image
-                        src={indicator.image}
-                        alt={tLanding(`indicator_${indicator.key}_title`)}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex flex-col flex-1 gap-3 pt-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-text-muted text-center">
-                      {indicator.id}
-                    </p>
-                    <CardTitle className="text-lg font-bold">
-                      {tLanding(`indicator_${indicator.key}_title`)}
-                    </CardTitle>
-                    <CardDescription className="text-sm leading-relaxed">
-                      {tLanding(`indicator_${indicator.key}_short_desc`)}
-                    </CardDescription>
-                    <Link
-                      href={`/indicateurs/${indicator.key}`}
-                      className="mt-auto pt-3 text-agri-green-600 hover:underline font-semibold text-sm inline-flex items-center gap-1"
-                    >
-                      {tLanding("indicator_learn_more")}
-                      <ArrowRight size={16} />
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
           </section>
         </ScrollReveal>
 
