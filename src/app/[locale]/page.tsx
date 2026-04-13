@@ -5,9 +5,7 @@ import SocialProofSection from '@/components/sections/home/SocialProofSection';
 import SolutionSection from '@/components/sections/home/SolutionSection';
 import ServicesSection from '@/components/sections/home/ServicesSection';
 import ValuePropositionSection from '@/components/sections/home/ValuePropositionSection';
-import ProblemStatementSection from '@/components/sections/home/ProblemStatementSection';
 import IndicatorsSection from '@/components/sections/home/IndicatorsSection';
-import BenefitsSection from '@/components/sections/home/BenefitsSection';
 import CtaFinalSection from '@/components/sections/home/CtaFinalSection';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -35,12 +33,11 @@ export default function HomePage() {
       <SectionDivider />
       <SolutionSection />
       <SectionDivider />
-      <ServicesSection />
       <ValuePropositionSection />
-      <ProblemStatementSection />
       <SectionDivider />
       <IndicatorsSection />
-      <BenefitsSection />
+      <SectionDivider />
+      <ServicesSection />
       <CtaFinalSection />
     </>
   );

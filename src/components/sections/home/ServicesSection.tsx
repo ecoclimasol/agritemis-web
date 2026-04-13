@@ -33,7 +33,8 @@ const services = [
 const products = [
   { icon: Activity, key: "1" },
   { icon: Grape, key: "2" },
-  { icon: Smartphone, key: "3" },
+  { icon: Map, key: "3" },
+  { icon: Smartphone, key: "4" },
 ] as const;
 
 export default function ServicesSection() {
@@ -112,7 +113,7 @@ export default function ServicesSection() {
           className="mb-12 [&_h2]:text-white [&_p]:text-agri-green-100"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map(({ icon: Icon, key }, index) => (
             <ScrollReveal key={key} delay={index * 0.1}>
               <Card variant="product" className="h-full">

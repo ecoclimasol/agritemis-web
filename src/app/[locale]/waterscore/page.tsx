@@ -118,59 +118,24 @@ export default function WaterScorePage() {
               <div className="flex items-center justify-center py-2 md:py-0 md:px-2 text-gray-400 text-xl">→</div>
 
               {/* Étape 2 */}
-              <div className="flex-[1.3] rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
+              <div className="flex-1 rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#607d8b"}}>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 2</div>
                   <div className="text-xs font-bold text-white">De l&apos;indicateur de risque au score de qualité</div>
-                  <div className="text-[10px] text-white/80">Relation inverse entre WARI et Water Quality Score</div>
+                  <div className="text-[10px] text-white/80">Cumul WARI sur le calendrier</div>
                 </div>
                 <div className="px-4 py-3 space-y-2">
-                  <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-xs text-center text-red-800 font-semibold leading-6">
-                    WARI cumulé <span className="text-base font-black">↑</span><br/>
-                    <span className="opacity-50 text-sm">=</span><br/>
-                    Risque fort pour l&apos;eau<br/>
-                    <span className="opacity-50 text-sm">=</span><br/>
-                    Water Quality Score <span className="text-base font-black">↓</span>
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-gray-400">WARI cumulé</div>
+                  <div className="flex items-center gap-2 bg-white rounded border border-gray-100 px-2 py-1">
+                    <span className="text-[10px] font-black rounded-full px-2 py-0.5 text-white flex-shrink-0 bg-sky-600">WARI</span>
+                    <span className="text-[10px] text-gray-500 flex-1 leading-tight">Risque eau — poids unique</span>
+                    <span className="text-sm font-black text-gray-700 flex-shrink-0">260</span>
+                    <span className="text-xs flex-shrink-0 font-bold text-red-600">↑↑</span>
                   </div>
-                  <div className="text-[10px] font-bold text-center text-slate-500 bg-slate-100 rounded px-2 py-1 tracking-wide">
-                    ⇄ &nbsp;ATTENTION ! Relation inverse&nbsp; ⇄
+                  <div className="h-px bg-gray-200" />
+                  <div className="rounded bg-red-50 border border-red-200 px-3 py-1.5 text-[10px] text-red-800 font-semibold text-center">
+                    ⇄ Relation inverse — WARI cumulé ↑ = Risque fort eau = Water Quality Score ↓
                   </div>
-                  <table className="w-full text-xs border-collapse">
-                    <thead>
-                      <tr className="border-b border-gray-200 text-gray-400 uppercase tracking-wide text-center">
-                        <th className="pb-1 pr-2 font-bold">WARI cumulé</th>
-                        <th className="pb-1 pr-2 font-bold">Risque eau</th>
-                        <th className="pb-1 font-bold">Water Quality Score</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100 text-center">
-                      <tr>
-                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-green-800 text-white">très faible</span></td>
-                        <td className="py-1 pr-2 text-green-800 font-medium">Très faible ✓</td>
-                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-green-800 text-white">80–100</span></td>
-                      </tr>
-                      <tr>
-                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-lime-500 text-white">faible</span></td>
-                        <td className="py-1 pr-2 text-lime-600 font-medium">Faible</td>
-                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-lime-500 text-white">60–80</span></td>
-                      </tr>
-                      <tr>
-                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-yellow-400 text-gray-800">modéré</span></td>
-                        <td className="py-1 pr-2 text-yellow-600 font-medium">Modéré</td>
-                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-yellow-400 text-gray-800">40–60</span></td>
-                      </tr>
-                      <tr>
-                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-orange-500 text-white">élevé</span></td>
-                        <td className="py-1 pr-2 text-orange-600 font-medium">Élevé</td>
-                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-orange-500 text-white">20–40</span></td>
-                      </tr>
-                      <tr>
-                        <td className="py-1 pr-2"><span className="inline-block rounded px-2 py-0.5 font-bold bg-red-600 text-white">très élevé</span></td>
-                        <td className="py-1 pr-2 text-red-600 font-medium">Très élevé ✗</td>
-                        <td className="py-1"><span className="inline-block rounded px-2 py-0.5 font-bold bg-red-600 text-white">0–20</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
               </div>
 

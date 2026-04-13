@@ -6,6 +6,12 @@ import Section from "@/components/layout/Section";
 import { Card, CardContent } from "@/components/ui/Card";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
+const stats = [
+  { value: "5", label: "Indicateurs scientifiques", color: "text-agri-green-600" },
+  { value: "1000+", label: "Programmes de traitement analysés", color: "text-agri-blue-500" },
+  { value: "🌍", label: "Couverture mondiale", color: "text-agri-green-600" },
+] as const;
+
 export default function SolutionSection() {
   const t = useTranslations("Landing");
 
@@ -27,6 +33,16 @@ export default function SolutionSection() {
               {t("solution_description_2")}
             </p>
           </blockquote>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-6 pt-2">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className={`text-3xl md:text-4xl font-bold ${stat.color}`}>{stat.value}</p>
+                <p className="text-xs text-text-muted uppercase tracking-wider mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </ScrollReveal>
 
         {/* Right column */}
