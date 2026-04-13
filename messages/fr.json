@@ -200,12 +200,13 @@
   "Indicators": {
     "eyebrow": "Mesure scientifique",
     "title": "Nos Indicateurs",
-    "subtitle": "Cinq indicateurs complémentaires pour une évaluation complète du risque pesticide à chaque étape de la chaîne agricole.",
+    "subtitle": "Cinq indicateurs complémentaires pour une évaluation complète du risque pesticide.",
     "eiq_eyebrow": "Avancée scientifique",
     "eiq_title": "De l'EIQ à AGRITEMIS",
     "eiq_subtitle": "Une nouvelle génération d'indicateurs plus précis et plus pertinents.",
-    "eiq_paragraph_1": "L'Environmental Impact Quotient (EIQ), développé dans les années 1990, a été un premier pas vers la quantification du risque pesticide. Cependant, ses limites sont aujourd'hui bien documentées : absence de pondération par la dose réelle, manque de granularité par compartiment environnemental, et données toxicologiques obsolètes.",
-    "eiq_paragraph_2": "Les indicateurs AGRITEMIS corrigent ces lacunes en intégrant les données réglementaires et toxicologiques européennes les plus récentes, en pondérant chaque évaluation par les doses réellement appliquées, et en distinguant cinq compartiments de risque indépendants — santé humaine, biodiversité, ressources en eau, sol et écotoxicité globale.",
+    "eiq_paragraph_1": "L'Environmental Impact Quotient (EIQ), développé dans les années 1990, a été un premier pas vers la quantification du risque pesticide. Cependant, ses limites sont aujourd'hui bien documentées : pondération asymétrique des critères conduisant à un classement discutable des pesticides (Kniss & Coburn, 2015), EIQ très fortement corrélé à la dose d'application, au détriment des facteurs de toxicité intrinsèque et des facteurs d'exposition, etc.",
+    "eiq_paragraph_2": "Les indicateurs AGRITEMIS corrigent ces lacunes, en intégrant les métabolites secondaires, le caractère PFA de certaines molécules, et en distinguant cinq compartiments de risque indépendants — santé humaine aiguë et chronique, biodiversité, consommateur, et ressources en eau.",
+    "eiq_paragraph_3": "Les indicateurs AGRITEMIS s'inscrivent dans une dynamique d'amélioration continue : nous intégrons les nouveaux sujets de préoccupation sociétale liés aux risques pesticides — à l'image des PFAS — dès lors qu'une base scientifique robuste permet d'objectiver ces nouvelles connaissances.",
     "cta_title": "Découvrez nos indicateurs en détail",
     "cta_subtitle": "Recevez la documentation complète de notre méthodologie scientifique.",
     "cta_button": "Recevoir la documentation"

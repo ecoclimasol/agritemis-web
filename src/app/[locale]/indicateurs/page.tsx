@@ -5,16 +5,71 @@ import { Link } from "@/i18n/navigation.client";
 import Section from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
-import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/Card";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
 const indicators = [
-  { acronym: "ARI", key: "ari", color: "bg-agri-green-600" },
-  { acronym: "CRI", key: "cri", color: "bg-agri-blue-600" },
-  { acronym: "CORI", key: "cori", color: "bg-amber-600" },
-  { acronym: "BRI", key: "bri", color: "bg-emerald-600" },
-  { acronym: "WARI", key: "wari", color: "bg-sky-600" },
-] as const;
+  {
+    acronym: "ARI",
+    key: "ari",
+    fullName: "Acute Risk Index",
+    bg: "bg-orange-600",
+    border: "border-orange-600",
+    desc: "Risque de toxicité aiguë pour les travailleurs agricoles.",
+    sectionLabel: "POPULATIONS CONCERNÉES",
+    tags: ["Applicateur", "Travailleurs", "Voisinage"],
+    tagColor: "bg-orange-100 text-orange-800",
+    criteria: "Toxicité aiguë × voie d'exposition",
+  },
+  {
+    acronym: "CRI",
+    key: "cri",
+    fullName: "Chronic Risk Index",
+    bg: "bg-red-600",
+    border: "border-red-600",
+    desc: "Risque de toxicité chronique pour les travailleurs agricoles.",
+    sectionLabel: "POPULATIONS CONCERNÉES",
+    tags: ["Applicateur", "Travailleurs", "Voisinage"],
+    tagColor: "bg-red-100 text-red-800",
+    criteria: "Toxicité chronique × persistance environnementale",
+  },
+  {
+    acronym: "BRI",
+    key: "bri",
+    fullName: "Biodiversity Risk Index",
+    bg: "bg-teal-800",
+    border: "border-teal-800",
+    desc: "Risque pour la biodiversité.",
+    sectionLabel: "ORGANISMES CONCERNÉS",
+    tags: ["Abeilles", "Oiseaux", "Vers de terre", "FISH — Poissons"],
+    tagColor: "bg-teal-100 text-teal-800",
+    criteria: "Toxicité par organisme × persistance & transfert vers l'eau",
+  },
+  {
+    acronym: "CORI",
+    key: "cori",
+    fullName: "Consumer Risk Index",
+    bg: "bg-purple-800",
+    border: "border-purple-800",
+    desc: "Risque pour les consommateurs via la contamination des cultures et des eaux souterraines.",
+    sectionLabel: "DEUX SOUS-INDICATEURS",
+    tags: ["CORIcrop", "CORIwater"],
+    tagColor: "bg-purple-100 text-purple-800",
+    criteria: "Toxicité chronique × contamination culture & nappe",
+  },
+  {
+    acronym: "WARI",
+    key: "wari",
+    fullName: "Water Risk Indicator",
+    bg: "bg-blue-700",
+    border: "border-blue-700",
+    desc: "Risque de pollution de l'eau pour les consommateurs d'eau et le milieu aquatique.",
+    sectionLabel: "DEUX COMPOSANTES",
+    tags: ["CORIwater", "FISH — Poissons"],
+    tagColor: "bg-blue-100 text-blue-800",
+    note: "FISH est le même sous-indicateur que dans le BRI",
+    criteria: "Toxicité aquatique × lixiviation & ruissellement",
+  },
+];
 
 export default function IndicateursPage() {
   const t = useTranslations("Indicators");
@@ -33,74 +88,209 @@ export default function IndicateursPage() {
         </ScrollReveal>
       </Section>
 
-      {/* Indicator Grid — Row 1: first 3 */}
+      {/* Indicator Grid */}
       <Section background="white" className="pt-0 pb-0">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {indicators.slice(0, 3).map((indicator, index) => (
-            <ScrollReveal key={indicator.acronym} delay={index * 0.1}>
-              <Card variant="indicator" className="h-full">
-                <CardContent className="pt-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-10 h-10 rounded-full ${indicator.color} text-white flex items-center justify-center font-bold text-sm shrink-0`}
-                    >
-                      {indicator.acronym.charAt(0)}
-                    </div>
-                    <div>
-                      <CardTitle>{indicator.acronym}</CardTitle>
-                      <p className="text-xs text-text-muted">
-                        {tLanding(`indicator_${indicator.key}_title`)}
-                      </p>
-                    </div>
-                  </div>
-                  <CardDescription className="leading-relaxed">
-                    {tLanding(`indicator_${indicator.key}_short_desc`)}
-                  </CardDescription>
-                  <Link
-                    href={`/indicateurs/${indicator.key}`}
-                    className="inline-block text-sm font-medium text-agri-green-600 hover:text-agri-green-700 transition-colors"
-                  >
-                    {tLanding("indicator_learn_more")} &rarr;
-                  </Link>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {indicators.map((ind, index) => (
+            <ScrollReveal key={ind.acronym} delay={index * 0.08}>
+              <div className="flex flex-col h-full rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white">
+                {/* Header coloré */}
+                <div className={`${ind.bg} px-4 py-3 text-center`}>
+                  <div className="text-2xl font-black text-white tracking-tight">{ind.acronym}</div>
+                  <div className="text-[10px] font-semibold text-white/80 mt-0.5">{ind.fullName}</div>
+                </div>
 
-        {/* Row 2: last 2, centered */}
-        <div className="grid md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
-          {indicators.slice(3).map((indicator, index) => (
-            <ScrollReveal key={indicator.acronym} delay={(index + 3) * 0.1}>
-              <Card variant="indicator" className="h-full">
-                <CardContent className="pt-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-10 h-10 rounded-full ${indicator.color} text-white flex items-center justify-center font-bold text-sm shrink-0`}
-                    >
-                      {indicator.acronym.charAt(0)}
+                {/* Corps */}
+                <div className="flex flex-col flex-1 px-3 py-3 space-y-3">
+                  {/* Description */}
+                  <p className={`text-xs italic text-gray-600 border-l-2 ${ind.border} pl-2 leading-relaxed`}>
+                    {ind.desc}
+                  </p>
+
+                  {/* Tags */}
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">{ind.sectionLabel}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {ind.tags.map((tag) => (
+                        <span key={tag} className={`text-[10px] font-semibold rounded-full px-2 py-0.5 ${ind.tagColor}`}>{tag}</span>
+                      ))}
                     </div>
-                    <div>
-                      <CardTitle>{indicator.acronym}</CardTitle>
-                      <p className="text-xs text-text-muted">
-                        {tLanding(`indicator_${indicator.key}_title`)}
-                      </p>
-                    </div>
+                    {"note" in ind && ind.note && (
+                      <p className="text-[9px] text-gray-400 italic mt-1">{ind.note}</p>
+                    )}
                   </div>
-                  <CardDescription className="leading-relaxed">
-                    {tLanding(`indicator_${indicator.key}_short_desc`)}
-                  </CardDescription>
-                  <Link
-                    href={`/indicateurs/${indicator.key}`}
-                    className="inline-block text-sm font-medium text-agri-green-600 hover:text-agri-green-700 transition-colors"
-                  >
-                    {tLanding("indicator_learn_more")} &rarr;
-                  </Link>
-                </CardContent>
-              </Card>
+
+                  {/* Critères */}
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">CRITÈRES CLÉS</p>
+                    <p className="text-[10px] text-gray-500">› {ind.criteria}</p>
+                  </div>
+
+                  {/* Lien */}
+                  <div className="mt-auto pt-2">
+                    <Link
+                      href={`/indicateurs/${ind.key}`}
+                      className="text-xs font-semibold text-agri-green-600 hover:text-agri-green-700 transition-colors"
+                    >
+                      {tLanding("indicator_learn_more")} &rarr;
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </ScrollReveal>
           ))}
         </div>
+      </Section>
+
+      {/* DE LA MOLÉCULE AU CALENDRIER */}
+      <Section background="surface">
+        <ScrollReveal>
+          <div className="space-y-8">
+            <SectionHeader
+              title="De la molécule au calendrier"
+              subtitle="Les indicateurs AGRITEMIS s'évaluent à trois échelles successives : la substance active, le produit phytosanitaire à sa dose, puis l'ensemble du calendrier cultural."
+              align="left"
+            />
+
+            {/* Sources de données */}
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-text-primary uppercase tracking-wide">Nos indicateurs sont calculés à partir :</p>
+              <ul className="space-y-2">
+                {[
+                  "Des propriétés physico-chimiques, toxicologiques et écotoxicologiques des substances actives (PPDB, BPDB — Pesticide and Biopesticide Property Database) : demi-vie, mobilité, doses létales, mentions de danger CLP, persistance dans les tissus vivants, etc.",
+                  "Des données réglementaires sur les produits phytosanitaires : mentions de danger CLP, formulation, composition, dose de référence.",
+                  "De la dose de produit réellement appliquée.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-agri-green-600 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Schéma 3 niveaux */}
+            <div className="flex flex-col md:flex-row items-stretch gap-0">
+
+              {/* Niveau 1 — Substance active */}
+              <div className="flex-1 rounded-xl md:rounded-r-none bg-white shadow-sm border border-border overflow-hidden">
+                <div className="px-4 py-2 border-b border-border" style={{background:"#455a64"}}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Niveau 1</div>
+                  <div className="text-xs font-bold text-white">Substance active</div>
+                  <div className="text-[10px] text-white/80 italic">lambda-cyhalothrine</div>
+                </div>
+                <div className="px-4 py-4">
+                  <div className="flex justify-between gap-2">
+                    {[
+                      { key: "CRI",  val: 77,  c: "bg-lime-500 text-white" },
+                      { key: "ARI",  val: 200, c: "bg-red-600 text-white" },
+                      { key: "BRI",  val: 196, c: "bg-red-600 text-white" },
+                      { key: "CORI", val: 48,  c: "bg-yellow-400 text-gray-800" },
+                      { key: "WARI", val: 129, c: "bg-red-600 text-white" },
+                    ].map((ind) => (
+                      <div key={ind.key} className="flex flex-col items-center gap-1">
+                        <span className="text-[10px] font-black text-gray-500">{ind.key}</span>
+                        <span className={`text-xs font-bold rounded px-1.5 py-0.5 w-full text-center ${ind.c}`}>{ind.val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center py-2 md:py-0 md:px-2 text-gray-400 text-xl">→</div>
+
+              {/* Niveau 2 — Produit */}
+              <div className="flex-1 rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
+                <div className="px-4 py-2 border-b border-border" style={{background:"#546e7a"}}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Niveau 2</div>
+                  <div className="text-xs font-bold text-white">Produit phytosanitaire</div>
+                  <div className="text-[10px] text-white/80 italic">Lambdastar — 0,2 l/ha</div>
+                </div>
+                <div className="px-4 py-4">
+                  <div className="flex justify-between gap-2">
+                    {[
+                      { key: "CRI",  val: 85,  c: "bg-red-500 text-white" },
+                      { key: "ARI",  val: 215, c: "bg-red-600 text-white" },
+                      { key: "BRI",  val: 205, c: "bg-red-600 text-white" },
+                      { key: "CORI", val: 53,  c: "bg-orange-400 text-white" },
+                      { key: "WARI", val: 138, c: "bg-red-600 text-white" },
+                    ].map((ind) => (
+                      <div key={ind.key} className="flex flex-col items-center gap-1">
+                        <span className="text-[10px] font-black text-gray-500">{ind.key}</span>
+                        <span className={`text-xs font-bold rounded px-1.5 py-0.5 w-full text-center ${ind.c}`}>{ind.val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center py-2 md:py-0 md:px-2 text-gray-400 text-xl">→</div>
+
+              {/* Niveau 3 — Calendrier */}
+              <div className="flex-[1.8] rounded-xl md:rounded-l-none bg-white shadow-sm border border-border overflow-hidden">
+                <div className="px-4 py-2 border-b border-border" style={{background:"#607d8b"}}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Niveau 3</div>
+                  <div className="text-xs font-bold text-white">Calendrier phytosanitaire</div>
+                  <div className="text-[10px] text-white/80">Cumul saison — scores par produit</div>
+                </div>
+                <div className="px-4 py-3 overflow-x-auto">
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 text-gray-400 uppercase tracking-wide">
+                        <th className="pb-1 pr-2 font-bold text-left">Produit</th>
+                        <th className="pb-1 pr-2 font-bold text-left">Dose</th>
+                        <th className="pb-1 pr-1 font-bold text-right">CRI</th>
+                        <th className="pb-1 pr-1 font-bold text-right">ARI</th>
+                        <th className="pb-1 pr-1 font-bold text-right">BRI</th>
+                        <th className="pb-1 pr-1 font-bold text-right">CORI</th>
+                        <th className="pb-1 font-bold text-right">WARI</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 text-gray-600">
+                      {[
+                        { name: "Lambdastar", dose: "0,2 l/ha", cri: ["bg-red-500","85"],    ari: ["bg-red-600","215"],   bri: ["bg-red-600","205"],   cori: ["bg-orange-400","53"],   wari: ["bg-red-600","138"] },
+                        { name: "Produit B",  dose: "0,8 l/ha", cri: ["bg-orange-400","64"], ari: ["bg-yellow-400","42"], bri: ["bg-orange-400","71"], cori: ["bg-lime-500","38"],     wari: ["bg-yellow-400","47"] },
+                        { name: "Produit C",  dose: "1,5 kg/ha",cri: ["bg-lime-500","29"],   ari: ["bg-lime-500","31"],   bri: ["bg-yellow-400","44"], cori: ["bg-lime-500","22"],     wari: ["bg-lime-500","28"] },
+                        { name: "Produit D",  dose: "0,3 l/ha", cri: ["bg-yellow-400","41"], ari: ["bg-lime-500","24"],   bri: ["bg-lime-500","33"],   cori: ["bg-lime-500","18"],     wari: ["bg-lime-500","25"] },
+                      ].map((row) => (
+                        <tr key={row.name}>
+                          <td className="py-1 pr-2 font-semibold">{row.name}</td>
+                          <td className="py-1 pr-2 text-gray-400 text-[10px]">{row.dose}</td>
+                          {[row.cri, row.ari, row.bri, row.cori, row.wari].map(([bg, val], i) => (
+                            <td key={i} className="py-1 pr-1 text-right">
+                              <span className={`inline-block rounded px-1.5 py-0.5 font-bold text-[10px] text-white ${bg === "bg-yellow-400" || bg === "bg-orange-400" ? bg + " !text-gray-800" : bg}`}>{val}</span>
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* Échelle de risque */}
+            <div className="rounded-xl bg-white border border-border px-5 py-4 space-y-2">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Échelle de risque des indicateurs</p>
+              <div className="flex rounded-lg overflow-hidden h-7">
+                {[
+                  { label: "0–20",    bg: "bg-green-800",  text: "text-white" },
+                  { label: "20–40",   bg: "bg-lime-500",   text: "text-white" },
+                  { label: "40–60",   bg: "bg-yellow-400", text: "text-gray-800" },
+                  { label: "60–80",   bg: "bg-orange-500", text: "text-white" },
+                  { label: "80–110",  bg: "bg-red-500",    text: "text-white" },
+                  { label: "> 110",   bg: "bg-red-600",    text: "text-white" },
+                ].map((band) => (
+                  <div key={band.label} className={`flex-1 flex items-center justify-center text-[10px] font-bold ${band.bg} ${band.text}`}>
+                    {band.label}
+                  </div>
+                ))}
+              </div>
+              <p className="text-[10px] text-gray-400 italic text-center">Risque de toxicité croissant →</p>
+            </div>
+
+          </div>
+        </ScrollReveal>
       </Section>
 
       {/* EIQ Comparison */}
@@ -118,6 +308,9 @@ export default function IndicateursPage() {
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
               {t("eiq_paragraph_2")}
+            </p>
+            <p className="text-text-secondary text-lg leading-relaxed">
+              {t("eiq_paragraph_3")}
             </p>
           </div>
         </ScrollReveal>
