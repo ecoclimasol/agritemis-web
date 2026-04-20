@@ -7,68 +7,12 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
-const indicators = [
-  {
-    acronym: "ARI",
-    key: "ari",
-    fullName: "Acute Risk Index",
-    bg: "bg-orange-600",
-    border: "border-orange-600",
-    desc: "Risque de toxicité aiguë pour les travailleurs agricoles.",
-    sectionLabel: "POPULATIONS CONCERNÉES",
-    tags: ["Applicateur", "Travailleurs", "Voisinage"],
-    tagColor: "bg-orange-100 text-orange-800",
-    criteria: "Toxicité aiguë × voie d'exposition",
-  },
-  {
-    acronym: "CRI",
-    key: "cri",
-    fullName: "Chronic Risk Index",
-    bg: "bg-red-600",
-    border: "border-red-600",
-    desc: "Risque de toxicité chronique pour les travailleurs agricoles.",
-    sectionLabel: "POPULATIONS CONCERNÉES",
-    tags: ["Applicateur", "Travailleurs", "Voisinage"],
-    tagColor: "bg-red-100 text-red-800",
-    criteria: "Toxicité chronique × persistance environnementale",
-  },
-  {
-    acronym: "BRI",
-    key: "bri",
-    fullName: "Biodiversity Risk Index",
-    bg: "bg-teal-800",
-    border: "border-teal-800",
-    desc: "Risque pour la biodiversité.",
-    sectionLabel: "ORGANISMES CONCERNÉS",
-    tags: ["Abeilles", "Oiseaux", "Vers de terre", "FISH — Poissons"],
-    tagColor: "bg-teal-100 text-teal-800",
-    criteria: "Toxicité par organisme × persistance & transfert vers l'eau",
-  },
-  {
-    acronym: "CORI",
-    key: "cori",
-    fullName: "Consumer Risk Index",
-    bg: "bg-purple-800",
-    border: "border-purple-800",
-    desc: "Risque pour les consommateurs via la contamination des cultures et des eaux souterraines.",
-    sectionLabel: "DEUX SOUS-INDICATEURS",
-    tags: ["CORIcrop", "CORIwater"],
-    tagColor: "bg-purple-100 text-purple-800",
-    criteria: "Toxicité chronique × contamination culture & nappe",
-  },
-  {
-    acronym: "WARI",
-    key: "wari",
-    fullName: "Water Risk Indicator",
-    bg: "bg-blue-700",
-    border: "border-blue-700",
-    desc: "Risque de pollution de l'eau pour les consommateurs d'eau et le milieu aquatique.",
-    sectionLabel: "DEUX COMPOSANTES",
-    tags: ["CORIwater", "FISH — Poissons"],
-    tagColor: "bg-blue-100 text-blue-800",
-    note: "FISH est le même sous-indicateur que dans le BRI",
-    criteria: "Toxicité aquatique × lixiviation & ruissellement",
-  },
+const indicatorStyles = [
+  { acronym: "ARI", key: "ari", fullName: "Acute Risk Index", bg: "bg-orange-600", border: "border-orange-600", tagColor: "bg-orange-100 text-orange-800", hasNote: false },
+  { acronym: "CRI", key: "cri", fullName: "Chronic Risk Index", bg: "bg-red-600", border: "border-red-600", tagColor: "bg-red-100 text-red-800", hasNote: false },
+  { acronym: "BRI", key: "bri", fullName: "Biodiversity Risk Index", bg: "bg-teal-800", border: "border-teal-800", tagColor: "bg-teal-100 text-teal-800", hasNote: false },
+  { acronym: "CORI", key: "cori", fullName: "Consumer Risk Index", bg: "bg-purple-800", border: "border-purple-800", tagColor: "bg-purple-100 text-purple-800", hasNote: false },
+  { acronym: "WARI", key: "wari", fullName: "Water Risk Indicator", bg: "bg-blue-700", border: "border-blue-700", tagColor: "bg-blue-100 text-blue-800", hasNote: true },
 ];
 
 export default function IndicateursPage() {
@@ -91,54 +35,49 @@ export default function IndicateursPage() {
       {/* Indicator Grid */}
       <Section background="white" className="pt-0 pb-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {indicators.map((ind, index) => (
-            <ScrollReveal key={ind.acronym} delay={index * 0.08}>
-              <div className="flex flex-col h-full rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white">
-                {/* Header coloré */}
-                <div className={`${ind.bg} px-4 py-3 text-center`}>
-                  <div className="text-2xl font-black text-white tracking-tight">{ind.acronym}</div>
-                  <div className="text-[10px] font-semibold text-white/80 mt-0.5">{ind.fullName}</div>
-                </div>
-
-                {/* Corps */}
-                <div className="flex flex-col flex-1 px-3 py-3 space-y-3">
-                  {/* Description */}
-                  <p className={`text-xs italic text-gray-600 border-l-2 ${ind.border} pl-2 leading-relaxed`}>
-                    {ind.desc}
-                  </p>
-
-                  {/* Tags */}
-                  <div>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">{ind.sectionLabel}</p>
-                    <div className="flex flex-wrap gap-1">
-                      {ind.tags.map((tag) => (
-                        <span key={tag} className={`text-[10px] font-semibold rounded-full px-2 py-0.5 ${ind.tagColor}`}>{tag}</span>
-                      ))}
+          {indicatorStyles.map((ind, index) => {
+            const desc = t(`${ind.key}_desc`);
+            const sectionLabel = t(`${ind.key}_section_label`);
+            const tags = t(`${ind.key}_tags`).split("|");
+            const criteria = t(`${ind.key}_criteria`);
+            const note = ind.hasNote ? t(`${ind.key}_note`) : null;
+            return (
+              <ScrollReveal key={ind.acronym} delay={index * 0.08}>
+                <div className="flex flex-col h-full rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white">
+                  <div className={`${ind.bg} px-4 py-3 text-center`}>
+                    <div className="text-2xl font-black text-white tracking-tight">{ind.acronym}</div>
+                    <div className="text-[10px] font-semibold text-white/80 mt-0.5">{ind.fullName}</div>
+                  </div>
+                  <div className="flex flex-col flex-1 px-3 py-3 space-y-3">
+                    <p className={`text-xs italic text-gray-600 border-l-2 ${ind.border} pl-2 leading-relaxed`}>
+                      {desc}
+                    </p>
+                    <div>
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">{sectionLabel}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {tags.map((tag) => (
+                          <span key={tag} className={`text-[10px] font-semibold rounded-full px-2 py-0.5 ${ind.tagColor}`}>{tag}</span>
+                        ))}
+                      </div>
+                      {note && <p className="text-[9px] text-gray-400 italic mt-1">{note}</p>}
                     </div>
-                    {"note" in ind && ind.note && (
-                      <p className="text-[9px] text-gray-400 italic mt-1">{ind.note}</p>
-                    )}
-                  </div>
-
-                  {/* Critères */}
-                  <div>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">CRITÈRES CLÉS</p>
-                    <p className="text-[10px] text-gray-500">› {ind.criteria}</p>
-                  </div>
-
-                  {/* Lien */}
-                  <div className="mt-auto pt-2">
-                    <Link
-                      href={`/indicateurs/${ind.key}`}
-                      className="text-xs font-semibold text-agri-green-600 hover:text-agri-green-700 transition-colors"
-                    >
-                      {tLanding("indicator_learn_more")} &rarr;
-                    </Link>
+                    <div>
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-1">{t("key_criteria_label")}</p>
+                      <p className="text-[10px] text-gray-500">› {criteria}</p>
+                    </div>
+                    <div className="mt-auto pt-2">
+                      <Link
+                        href={`/indicateurs/${ind.key}`}
+                        className="text-xs font-semibold text-agri-green-600 hover:text-agri-green-700 transition-colors"
+                      >
+                        {tLanding("indicator_learn_more")} &rarr;
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </Section>
 
@@ -147,20 +86,16 @@ export default function IndicateursPage() {
         <ScrollReveal>
           <div className="space-y-8">
             <SectionHeader
-              title="De la molécule au calendrier"
-              subtitle="Les indicateurs AGRITEMIS s'évaluent à trois échelles successives : la substance active, le produit phytosanitaire à sa dose, puis l'ensemble du calendrier cultural."
+              title={t("molecule_title")}
+              subtitle={t("molecule_subtitle")}
               align="left"
             />
 
             {/* Sources de données */}
             <div className="space-y-2">
-              <p className="text-sm font-semibold text-text-primary uppercase tracking-wide">Nos indicateurs sont calculés à partir :</p>
+              <p className="text-sm font-semibold text-text-primary uppercase tracking-wide">{t("sources_title")}</p>
               <ul className="space-y-2">
-                {[
-                  "Des propriétés physico-chimiques, toxicologiques et écotoxicologiques des substances actives (PPDB, BPDB — Pesticide and Biopesticide Property Database) : demi-vie, mobilité, doses létales, mentions de danger CLP, persistance dans les tissus vivants, etc.",
-                  "Des données réglementaires sur les produits phytosanitaires : mentions de danger CLP, formulation, composition, dose de référence.",
-                  "De la dose de produit réellement appliquée.",
-                ].map((item, i) => (
+                {[t("source_1"), t("source_2"), t("source_3")].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-agri-green-600 flex-shrink-0" />
                     <span>{item}</span>
@@ -175,8 +110,8 @@ export default function IndicateursPage() {
               {/* Niveau 1 — Substance active */}
               <div className="flex-1 rounded-xl md:rounded-r-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#455a64"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Niveau 1</div>
-                  <div className="text-xs font-bold text-white">Substance active</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("level_label")} 1</div>
+                  <div className="text-xs font-bold text-white">{t("level_1_title")}</div>
                   <div className="text-[10px] text-white/80 italic">lambda-cyhalothrine</div>
                 </div>
                 <div className="px-4 py-4">
@@ -202,8 +137,8 @@ export default function IndicateursPage() {
               {/* Niveau 2 — Produit */}
               <div className="flex-1 rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#546e7a"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Niveau 2</div>
-                  <div className="text-xs font-bold text-white">Produit phytosanitaire</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("level_label")} 2</div>
+                  <div className="text-xs font-bold text-white">{t("level_2_title")}</div>
                   <div className="text-[10px] text-white/80 italic">Lambdastar — 0,2 l/ha</div>
                 </div>
                 <div className="px-4 py-4">
@@ -229,16 +164,16 @@ export default function IndicateursPage() {
               {/* Niveau 3 — Calendrier */}
               <div className="flex-[1.8] rounded-xl md:rounded-l-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#607d8b"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Niveau 3</div>
-                  <div className="text-xs font-bold text-white">Calendrier phytosanitaire</div>
-                  <div className="text-[10px] text-white/80">Cumul saison — scores par produit</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("level_label")} 3</div>
+                  <div className="text-xs font-bold text-white">{t("level_3_title")}</div>
+                  <div className="text-[10px] text-white/80">{t("level_3_subtitle")}</div>
                 </div>
                 <div className="px-4 py-3 overflow-x-auto">
                   <table className="w-full text-xs border-collapse">
                     <thead>
                       <tr className="border-b-2 border-gray-200 text-gray-400 uppercase tracking-wide">
-                        <th className="pb-1 pr-2 font-bold text-left">Produit</th>
-                        <th className="pb-1 pr-2 font-bold text-left">Dose</th>
+                        <th className="pb-1 pr-2 font-bold text-left">{t("table_product")}</th>
+                        <th className="pb-1 pr-2 font-bold text-left">{t("table_dose")}</th>
                         <th className="pb-1 pr-1 font-bold text-right">CRI</th>
                         <th className="pb-1 pr-1 font-bold text-right">ARI</th>
                         <th className="pb-1 pr-1 font-bold text-right">BRI</th>
@@ -271,7 +206,7 @@ export default function IndicateursPage() {
 
             {/* Échelle de risque */}
             <div className="rounded-xl bg-white border border-border px-5 py-4 space-y-2">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Échelle de risque des indicateurs</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{t("risk_scale_label")}</p>
               <div className="flex rounded-lg overflow-hidden h-7">
                 {[
                   { label: "0–20",    bg: "bg-green-800",  text: "text-white" },
@@ -286,7 +221,7 @@ export default function IndicateursPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-[10px] text-gray-400 italic text-center">Risque de toxicité croissant →</p>
+              <p className="text-[10px] text-gray-400 italic text-center">{t("risk_scale_legend")}</p>
             </div>
 
           </div>
