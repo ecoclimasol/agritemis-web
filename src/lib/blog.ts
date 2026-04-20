@@ -38,8 +38,10 @@ export function getAllPosts(locale: string): BlogPost[] {
         image: data.image,
         tags: data.tags ?? [],
         content,
+        draft: data.draft ?? false,
       };
     })
+    .filter((post) => !post.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 

@@ -5,6 +5,9 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Section from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { getPostBySlug, getAllPosts } from "@/lib/blog";
+import { Callout, PopulationCard } from "@/components/blog/MDXComponents";
+
+const mdxComponents = { Callout, PopulationCard };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
@@ -97,8 +100,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
         )}
 
         {/* Content */}
-        <div className="prose prose-lg prose-agri max-w-none prose-headings:font-bold prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-agri-green-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-text-primary prose-li:text-text-secondary">
-          <MDXRemote source={post.content} />
+        <div className="prose prose-lg prose-agri max-w-none prose-headings:font-bold prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-agri-green-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-text-primary prose-li:text-text-secondary prose-img:mx-auto prose-img:block">
+          <MDXRemote source={post.content} components={mdxComponents} />
         </div>
 
         {/* Back */}
