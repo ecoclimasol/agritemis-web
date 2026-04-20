@@ -224,6 +224,7 @@
   "eiq_subtitle": "A new generation of more precise and more relevant indicators.",
   "eiq_paragraph_1": "The Environmental Impact Quotient (EIQ), developed in the 1990s, was a first step towards quantifying pesticide risk. However, its limitations are now well documented: no weighting by actual dose, lack of granularity by environmental compartment, and outdated toxicological data.",
   "eiq_paragraph_2": "AGRITEMIS indicators address these shortcomings by integrating the most recent European regulatory and toxicological data, weighting each assessment by actually applied doses, and distinguishing five independent risk compartments — human health, biodiversity, water resources, soil and overall ecotoxicity.",
+  "eiq_paragraph_3": "AGRITEMIS indicators are part of a continuous improvement dynamic: we integrate new societal concerns related to pesticide risks — such as PFAS — as soon as a robust scientific basis allows these new findings to be objectively assessed.",
   "cta_title": "Discover our indicators in detail",
   "cta_subtitle": "Receive the complete documentation of our scientific methodology.",
   "cta_button": "Receive documentation"
@@ -479,8 +480,10 @@
     "product_1_desc": "The complete range of proprietary scientific indicators (ARI, CRI, CORI, BRI, WARI) covering human health, biodiversity, and water, including global scoring.",
     "product_2_title": "VitiScore",
     "product_2_desc": "The benchmark reference in viticulture. A pesticide footprint measurement based on the analysis of over a thousand international treatment schedules.",
-    "product_3_title": "Chatbot IA alternatives",
-    "product_3_desc": "Robust Chatbot IA for searching alternatives to pesticides in viticulture."
+    "product_3_title": "Water Quality Score",
+    "product_3_desc": "Measure and manage the risks of water pollution from phytosanitary treatments, from the field to the watershed.",
+    "product_4_title": "AI Alternatives Chatbot",
+    "product_4_desc": "Robust AI chatbot for searching pesticide alternatives in viticulture."
   }
 
 }
