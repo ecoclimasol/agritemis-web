@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "AGRITEMIS Contact <onboarding@resend.dev>",
-      to: ["jp.boulanger@agritemis.com", "j.caubel@agritemis.com"],
+      to: "contact@agritemis.com",
       replyTo: email,
       subject: `[Contact] ${subject || "Nouveau message"} — ${name}`,
       text: [
