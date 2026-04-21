@@ -107,9 +107,26 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* COPYRIGHT */}
-      <div className="border-t border-agri-green-800 px-6 py-4 text-center text-xs text-agri-green-400">
-        © {currentYear} AGRITEMIS — {t("copyright_suffix")}
+      {/* LEGAL LINKS + COPYRIGHT */}
+      <div className="border-t border-agri-green-800 px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-agri-green-400">
+        <div>© {currentYear} AGRITEMIS — {t("copyright_suffix")}</div>
+        <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+          <li>
+            <Link href="/mentions-legales" className="hover:text-white transition-colors duration-200">
+              {t("legal_notice")}
+            </Link>
+          </li>
+          <li>
+            <Link href="/politique-confidentialite" className="hover:text-white transition-colors duration-200">
+              {t("privacy_policy")}
+            </Link>
+          </li>
+          <li>
+            <Link href="/cgu" className="hover:text-white transition-colors duration-200">
+              {t("terms")}
+            </Link>
+          </li>
+        </ul>
       </div>
     </footer>
   );
