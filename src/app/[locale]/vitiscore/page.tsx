@@ -61,7 +61,7 @@ export default function VitiScorePage() {
                 {t("what_intro")}
               </p>
               <p className="text-text-secondary">
-                Il repose sur le calcul des indicateurs{" "}
+                {t("indicators_base")}{" "}
                 {[
                   { key: "cri",  label: "CRI",  color: "text-orange-600" },
                   { key: "bri",  label: "BRI",  color: "text-green-800" },
@@ -84,16 +84,16 @@ export default function VitiScorePage() {
               {/* Étape 1 */}
               <div className="flex-[1.1] rounded-xl md:rounded-r-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#455a64"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 1</div>
-                  <div className="text-xs font-bold text-white">Calendrier cultural</div>
-                  <div className="text-[10px] text-white/80">Indices de risque par produit à sa dose</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("step1")}</div>
+                  <div className="text-xs font-bold text-white">{t("cultural_calendar")}</div>
+                  <div className="text-[10px] text-white/80">{t("risk_per_product")}</div>
                 </div>
                 <div className="px-4 py-3 overflow-x-auto">
                   <table className="w-full text-xs text-left border-collapse">
                     <thead>
                       <tr className="border-b-2 border-gray-200 text-gray-400 uppercase tracking-wide">
-                        <th className="pb-1 pr-2 font-bold text-left">Produit</th>
-                        <th className="pb-1 pr-2 font-bold text-left">Dose</th>
+                        <th className="pb-1 pr-2 font-bold text-left">{t("col_product")}</th>
+                        <th className="pb-1 pr-2 font-bold text-left">{t("col_dose")}</th>
                         <th className="pb-1 pr-1 font-bold text-right">CRI</th>
                         <th className="pb-1 pr-1 font-bold text-right">BRI</th>
                         <th className="pb-1 pr-1 font-bold text-right">ARI</th>
@@ -131,7 +131,7 @@ export default function VitiScorePage() {
                         <tr key={row.name}>
                           <td className="py-1 pr-2 font-semibold whitespace-nowrap">
                             {row.name}
-                            {row.bio && <span className="ml-1 text-[9px] font-bold bg-green-100 text-green-800 border border-green-300 rounded-full px-1.5 py-0.5">biocontrôle</span>}
+                            {row.bio && <span className="ml-1 text-[9px] font-bold bg-green-100 text-green-800 border border-green-300 rounded-full px-1.5 py-0.5">{t("biocontrol_badge")}</span>}
                           </td>
                           <td className="py-1 pr-2 text-gray-400 text-[10px]">{row.dose}</td>
                           <td className="py-1 pr-1 text-right"><span className={`inline-block rounded px-1.5 py-0.5 font-bold text-[10px] ${row.cri.c}`}>{row.cri.v}</span></td>
@@ -148,28 +148,28 @@ export default function VitiScorePage() {
               {/* Flèche cumul */}
               <div className="flex flex-col items-center justify-center py-2 md:py-0 md:px-2 text-gray-400">
                 <span className="text-xl">→</span>
-                <span className="text-[9px] italic">cumul</span>
+                <span className="text-[9px] italic">{t("cumul_label")}</span>
               </div>
 
               {/* Étape 2 */}
               <div className="flex-[1.6] rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#558b2f"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 2</div>
-                  <div className="text-xs font-bold text-white">De l&apos;indicateur de risque au score de qualité</div>
-                  <div className="text-[10px] text-white/80">Contribution de chaque indice au score final</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("step2")}</div>
+                  <div className="text-xs font-bold text-white">{t("risk_to_score")}</div>
+                  <div className="text-[10px] text-white/80">{t("contribution_label")}</div>
                 </div>
                 <div className="px-4 py-3 space-y-1.5">
-                  <div className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Indices cumulés &amp; contribution au score</div>
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-gray-400">{t("cumul_contribution")}</div>
                   {[
-                    { key: "CRI",  bg: "bg-orange-600", desc: "Risque chronique humain",     val: 257, dominant: true },
-                    { key: "BRI",  bg: "bg-teal-800",   desc: "Risque pour la biodiversité", val: 214, dominant: true },
-                    { key: "ARI",  bg: "bg-red-800",    desc: "Risque aigu",                 val: 149, dominant: false },
-                    { key: "CORI", bg: "bg-purple-800", desc: "Risque consommateurs",        val: 154, dominant: false },
+                    { key: "CRI",  bg: "bg-orange-600", desc: t("cri_risk_desc"), val: 257, dominant: true },
+                    { key: "BRI",  bg: "bg-teal-800",   desc: t("bri_risk_desc"), val: 214, dominant: true },
+                    { key: "ARI",  bg: "bg-red-800",    desc: t("ari_risk_desc"), val: 149, dominant: false },
+                    { key: "CORI", bg: "bg-purple-800", desc: t("cori_risk_desc"),val: 154, dominant: false },
                   ].map((ind) => (
                     <div key={ind.key} className="flex items-center gap-2 bg-white rounded border border-gray-100 px-2 py-1">
                       <span className={`text-[10px] font-black rounded-full px-2 py-0.5 text-white flex-shrink-0 ${ind.bg}`}>{ind.key}</span>
                       <span className="text-[10px] text-gray-500 flex-1 leading-tight">
-                        {ind.desc} — {ind.dominant ? <strong className="text-gray-700">dominant</strong> : "moindre"}
+                        {ind.desc} — {ind.dominant ? <strong className="text-gray-700">{t("dominant")}</strong> : t("moindre")}
                       </span>
                       <span className="text-sm font-black text-gray-700 flex-shrink-0">{ind.val}</span>
                       <span className={`text-xs flex-shrink-0 font-bold ${ind.dominant ? "text-red-600" : "text-yellow-500"}`}>{ind.dominant ? "↑↑" : "↑"}</span>
@@ -178,10 +178,10 @@ export default function VitiScorePage() {
                   <div className="h-px bg-gray-200" />
                   <div className="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded px-2 py-1 text-[10px] text-orange-700">
                     <span className="flex-shrink-0">⚠</span>
-                    <span><strong>Modulation</strong> — toxicité des produits les plus toxiques &amp; part de biocontrôle</span>
+                    <span>{t("modulation")}</span>
                   </div>
                   <div className="rounded bg-red-50 border border-red-200 px-3 py-1.5 text-[10px] text-red-800 font-semibold text-center">
-                    ⇄ Relation inverse — Risque cumulé ↑ = Risque fort santé &amp; env. = Vitiscore ↓
+                    {t("inverse_relation")}
                   </div>
                 </div>
               </div>
@@ -189,23 +189,23 @@ export default function VitiScorePage() {
               {/* Flèche résultat */}
               <div className="flex flex-col items-center justify-center py-2 md:py-0 md:px-2 text-gray-400">
                 <span className="text-xl">→</span>
-                <span className="text-[9px] italic">résultat</span>
+                <span className="text-[9px] italic">{t("result_arrow")}</span>
               </div>
 
               {/* Résultat */}
               <div className="flex-[0.8] rounded-xl md:rounded-l-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border bg-green-800">
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Résultat</div>
-                  <div className="text-xs font-bold text-white">Vitiscore</div>
-                  <div className="text-[10px] text-white/80">Score de qualité du calendrier (0–100)</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("result_label")}</div>
+                  <div className="text-xs font-bold text-white">{t("score_name")}</div>
+                  <div className="text-[10px] text-white/80">{t("score_subtitle")}</div>
                 </div>
                 <div className="px-4 py-3 space-y-1.5">
                   {[
-                    { label: "≥ 90", desc: "Risque très faible", color: "bg-green-800 text-white" },
-                    { label: "≥ 60", desc: "Risque faible",      color: "bg-lime-500 text-white" },
-                    { label: "≥ 40", desc: "Risque modéré",      color: "bg-yellow-400 text-gray-800" },
-                    { label: "≥ 20", desc: "Risque élevé",       color: "bg-orange-500 text-white" },
-                    { label: "< 20", desc: "Risque très élevé",  color: "bg-red-600 text-white" },
+                    { label: "≥ 90", desc: t("risk_vl"), color: "bg-green-800 text-white" },
+                    { label: "≥ 60", desc: t("risk_l"),  color: "bg-lime-500 text-white" },
+                    { label: "≥ 40", desc: t("risk_m"),  color: "bg-yellow-400 text-gray-800" },
+                    { label: "≥ 20", desc: t("risk_h"),  color: "bg-orange-500 text-white" },
+                    { label: "< 20", desc: t("risk_vh"), color: "bg-red-600 text-white" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-2">
                       <span className={`inline-block rounded px-2 py-0.5 text-xs font-bold min-w-[44px] text-center ${item.color}`}>{item.label}</span>

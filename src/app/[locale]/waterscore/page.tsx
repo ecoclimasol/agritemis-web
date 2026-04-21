@@ -58,12 +58,12 @@ export default function WaterScorePage() {
                 {t("what_intro")}
               </p>
               <p className="text-text-secondary">
-                Le Water Quality Score repose sur l&apos;indicateur de risque{" "}
+                {t("what_wari_base")}{" "}
                 <Link
                   href="/indicateurs/wari"
                   className="font-semibold text-blue-600 hover:underline inline-flex items-center gap-1"
                 >
-                  WARI — en savoir plus
+                  {t("wari_link_text")}
                   <ArrowRight size={14} />
                 </Link>
               </p>
@@ -75,16 +75,16 @@ export default function WaterScorePage() {
               {/* Étape 1 */}
               <div className="flex-1 rounded-xl md:rounded-r-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#455a64"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 1</div>
-                  <div className="text-xs font-bold text-white">Calendrier cultural</div>
-                  <div className="text-[10px] text-white/80">WARI par produit — cumul saison</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("step1")}</div>
+                  <div className="text-xs font-bold text-white">{t("cultural_calendar")}</div>
+                  <div className="text-[10px] text-white/80">{t("wari_season_cumul")}</div>
                 </div>
                 <div className="px-4 py-3 overflow-x-auto">
                   <table className="w-full text-xs text-left border-collapse">
                     <thead>
                       <tr className="border-b-2 border-gray-200 text-gray-400 uppercase tracking-wide">
-                        <th className="pb-1 pr-3 font-bold text-left">Produit</th>
-                        <th className="pb-1 pr-3 font-bold text-right">Dose</th>
+                        <th className="pb-1 pr-3 font-bold text-left">{t("col_product")}</th>
+                        <th className="pb-1 pr-3 font-bold text-right">{t("col_dose")}</th>
                         <th className="pb-1 font-bold text-right">WARI</th>
                       </tr>
                     </thead>
@@ -120,21 +120,21 @@ export default function WaterScorePage() {
               {/* Étape 2 */}
               <div className="flex-1 rounded-xl md:rounded-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border" style={{background:"#607d8b"}}>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Étape 2</div>
-                  <div className="text-xs font-bold text-white">De l&apos;indicateur de risque au score de qualité</div>
-                  <div className="text-[10px] text-white/80">Cumul WARI sur le calendrier</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("step2")}</div>
+                  <div className="text-xs font-bold text-white">{t("risk_to_score")}</div>
+                  <div className="text-[10px] text-white/80">{t("wari_calendar_cumul")}</div>
                 </div>
                 <div className="px-4 py-3 space-y-2">
-                  <div className="text-[9px] font-bold uppercase tracking-widest text-gray-400">WARI cumulé</div>
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-gray-400">{t("wari_cumul_label")}</div>
                   <div className="flex items-center gap-2 bg-white rounded border border-gray-100 px-2 py-1">
                     <span className="text-[10px] font-black rounded-full px-2 py-0.5 text-white flex-shrink-0 bg-sky-600">WARI</span>
-                    <span className="text-[10px] text-gray-500 flex-1 leading-tight">Risque eau — poids unique</span>
+                    <span className="text-[10px] text-gray-500 flex-1 leading-tight">{t("water_risk_label")}</span>
                     <span className="text-sm font-black text-gray-700 flex-shrink-0">260</span>
                     <span className="text-xs flex-shrink-0 font-bold text-red-600">↑↑</span>
                   </div>
                   <div className="h-px bg-gray-200" />
                   <div className="rounded bg-red-50 border border-red-200 px-3 py-1.5 text-[10px] text-red-800 font-semibold text-center">
-                    ⇄ Relation inverse — WARI cumulé ↑ = Risque fort eau = Water Quality Score ↓
+                    {t("inverse_relation")}
                   </div>
                 </div>
               </div>
@@ -145,17 +145,17 @@ export default function WaterScorePage() {
               {/* Résultat */}
               <div className="flex-1 rounded-xl md:rounded-l-none bg-white shadow-sm border border-border overflow-hidden">
                 <div className="px-4 py-2 border-b border-border bg-blue-800">
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Résultat</div>
-                  <div className="text-xs font-bold text-white">Water Quality Score</div>
-                  <div className="text-[10px] text-white/80">Score de qualité eau (0–100)</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">{t("result_label")}</div>
+                  <div className="text-xs font-bold text-white">{t("score_name")}</div>
+                  <div className="text-[10px] text-white/80">{t("score_subtitle")}</div>
                 </div>
                 <div className="px-4 py-3 space-y-1.5">
                   {[
-                    { label: "80–100", desc: "Risque très faible pour l'eau", color: "bg-green-800 text-white" },
-                    { label: "60–80",  desc: "Risque faible",                 color: "bg-lime-500 text-white" },
-                    { label: "40–60",  desc: "Risque modéré",                 color: "bg-yellow-400 text-gray-800" },
-                    { label: "20–40",  desc: "Risque élevé",                  color: "bg-orange-500 text-white" },
-                    { label: "0–20",   desc: "Risque très élevé",             color: "bg-red-600 text-white" },
+                    { label: "80–100", desc: t("risk_vl"), color: "bg-green-800 text-white" },
+                    { label: "60–80",  desc: t("risk_l"),  color: "bg-lime-500 text-white" },
+                    { label: "40–60",  desc: t("risk_m"),  color: "bg-yellow-400 text-gray-800" },
+                    { label: "20–40",  desc: t("risk_h"),  color: "bg-orange-500 text-white" },
+                    { label: "0–20",   desc: t("risk_vh"), color: "bg-red-600 text-white" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-2">
                       <span className={`inline-block rounded px-2 py-0.5 text-xs font-bold min-w-[44px] text-center ${item.color}`}>{item.label}</span>
