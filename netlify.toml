@@ -1,0 +1,47 @@
+[[redirects]]
+  from = "https://agritemis.fr/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.agritemis.fr/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://agritemis.eu/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.agritemis.eu/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://agritemis.fr/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.agritemis.fr/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://agritemis.eu/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.agritemis.eu/*"
+  to = "https://agritemis.com/:splat"
+  status = 301
+  force = true
