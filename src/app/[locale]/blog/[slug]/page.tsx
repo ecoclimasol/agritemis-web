@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export async function generateStaticParams() {
-  const locales = ["fr", "en", "es", "pt"];
+  const locales = ["fr", "en", "es", "pt", "de", "it"];
   const params: { locale: string; slug: string }[] = [];
 
   for (const locale of locales) {

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export function generateStaticParams() {
-  const locales = ["fr", "en", "es", "pt"];
+  const locales = ["fr", "en", "es", "pt", "de", "it"];
   return locales.flatMap((locale) =>
     validSlugs.map((slug) => ({ locale, slug }))
   );

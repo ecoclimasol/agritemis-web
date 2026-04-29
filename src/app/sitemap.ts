@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const locales = ['fr', 'en', 'es', 'pt'];
+const locales = ['fr', 'en', 'es', 'pt', 'de', 'it'];
 const baseUrl = 'https://agritemis.com';
 
 const pages = [

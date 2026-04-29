@@ -28,12 +28,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         en: '/en',
         es: '/es',
         pt: '/pt',
+        de: '/de',
+        it: '/it',
       },
     },
     openGraph: {
       type: 'website',
       siteName: 'AGRITEMIS',
-      locale: locale === 'fr' ? 'fr_FR' : locale === 'es' ? 'es_ES' : locale === 'pt' ? 'pt_PT' : 'en_US',
+      locale:
+        locale === 'fr' ? 'fr_FR'
+        : locale === 'es' ? 'es_ES'
+        : locale === 'pt' ? 'pt_PT'
+        : locale === 'de' ? 'de_DE'
+        : locale === 'it' ? 'it_IT'
+        : 'en_US',
     },
   };
 }
@@ -113,7 +121,7 @@ export default async function LocaleLayout({
                   url: 'https://agritemis.com',
                   name: 'AGRITEMIS',
                   publisher: { '@id': 'https://agritemis.com/#organization' },
-                  inLanguage: ['fr', 'en', 'es'],
+                  inLanguage: ['fr', 'en', 'es', 'pt', 'de', 'it'],
                 },
               ],
             }),

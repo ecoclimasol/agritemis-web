@@ -5,5 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Applique le middleware à toutes les routes sauf les fichiers statiques
-  matcher: ['/', '/(fr|en|es|pt)/:path*']
+  matcher: ['/', '/(fr|en|es|pt|de|it)/:path*']
 };

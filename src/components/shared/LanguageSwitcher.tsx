@@ -2,7 +2,7 @@
 
 import { Link, usePathname } from '@/i18n/navigation.client';
 
-const locales = ['fr', 'en', 'es', 'pt'] as const;
+const locales = ['fr', 'en', 'es', 'pt', 'de', 'it'] as const;
 
 interface LanguageSwitcherProps {
   locale: string;
